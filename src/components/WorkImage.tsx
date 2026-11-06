@@ -36,7 +36,14 @@ const WorkImage = (props: Props) => {
             <MdArrowOutward />
           </div>
         )}
-        <img src={props.image} alt={props.alt} />
+        <img
+          src={props.image}
+          alt={props.alt || "Project preview"}
+          loading="lazy"
+          onError={(e) => {
+            (e.target as HTMLImageElement).src = "/images/placeholder.webp";
+          }}
+        />
         {isVideo && <video src={video} autoPlay muted playsInline loop></video>}
       </a>
     </div>

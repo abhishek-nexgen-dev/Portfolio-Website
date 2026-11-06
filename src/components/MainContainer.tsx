@@ -8,6 +8,10 @@ import Navbar from "./Navbar";
 import SocialIcons from "./SocialIcons";
 import WhatIDo from "./WhatIDo";
 import Work from "./Work";
+import TechSkills from "./TechSkills";
+import Gallery from "./Gallery";
+import Testimonials from "./Testimonials";
+import Exploring from "./Exploring";
 import setSplitText from "./utils/splitText";
 
 const TechStack = lazy(() => import("./TechStack"));
@@ -43,11 +47,15 @@ const MainContainer = ({ children }: PropsWithChildren) => {
             <WhatIDo />
             <Career />
             <Work />
+            <TechSkills />
             {isDesktopView && (
               <Suspense fallback={<div>Loading....</div>}>
                 <TechStack />
               </Suspense>
             )}
+            <Gallery />
+            <Testimonials />
+            <Exploring />
             <Contact />
           </div>
         </div>

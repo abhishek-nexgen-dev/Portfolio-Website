@@ -12,7 +12,7 @@
 .about-me {
   padding: 50px 0px;
   padding-bottom: 0;
-  width: 500px;
+  width: 580px;
   max-width: calc(100% - 15px);
 }
 .about-me h3 {
@@ -21,13 +21,56 @@
   letter-spacing: 7px;
   font-weight: 400;
   color: var(--accentColor);
+  margin-bottom: 20px;
 }
 
-.about-me p {
-  font-size: 33px;
+.about-me p.para {
+  font-size: 28px;
   font-weight: 600;
   line-height: 36px;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
+  margin-bottom: 24px;
+}
+
+.about-details {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 15px;
+}
+
+.about-subtext {
+  font-size: 16px !important;
+  font-weight: 300 !important;
+  line-height: 26px !important;
+  letter-spacing: 0.3px !important;
+  color: #D4D4D4;
+  margin: 0;
+}
+
+.about-philosophy-card {
+  margin-top: 10px;
+  padding: 16px 20px;
+  background: rgba(255, 107, 0, 0.05);
+  border-left: 3px solid var(--accentColor);
+  border-radius: 0 10px 10px 0;
+}
+
+.philosophy-label {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  font-weight: 600;
+  color: var(--accentColor);
+  margin-bottom: 6px;
+}
+
+.about-philosophy-card blockquote {
+  margin: 0;
+  font-size: 15px;
+  font-style: italic;
+  line-height: 22px;
+  color: #FFFFFF;
 }
 
 @media only screen and (min-width: 600px) {
@@ -37,7 +80,7 @@
 }
 @media only screen and (min-width: 768px) {
   .about-me {
-    width: 500px;
+    width: 580px;
     max-width: calc(100% - 70px);
     transform: translateY(0%);
   }
@@ -56,16 +99,28 @@
   }
   .about-me {
     padding: 0px;
-    width: 50%;
+    width: 52%;
   }
-  .about-me p {
-    font-size: 1.9vw;
-    line-height: 2.3vw;
+  .about-me p.para {
+    font-size: 1.6vw;
+    line-height: 2.1vw;
+  }
+  .about-subtext {
+    font-size: 0.95vw !important;
+    line-height: 1.5vw !important;
+  }
+  .about-philosophy-card blockquote {
+    font-size: 0.9vw;
+    line-height: 1.4vw;
   }
 }
 @media only screen and (min-width: 1950px) {
-  .about-me p {
-    font-size: 2.5rem;
-    line-height: 2.7rem;
+  .about-me p.para {
+    font-size: 2.1rem;
+    line-height: 2.5rem;
+  }
+  .about-subtext {
+    font-size: 1.15rem !important;
+    line-height: 1.8rem !important;
   }
 }

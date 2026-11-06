@@ -2,8 +2,8 @@
   position: fixed;
   width: 100vw;
   height: var(--vh);
-  /* background-image: linear-gradient(#cbb1ff, #d8c4ff); */
-  background-color: #eae5ec;
+  /* background-image: linear-gradient(#FF6B00, #FFB380); */
+  background-color: #FFFFFF;
   z-index: 999999999;
   display: flex;
   place-items: center;
@@ -70,7 +70,7 @@
   overflow: visible;
 }
 .loading-hover {
-  background-color: #a87cff;
+  background-color: #FF6B00;
   width: 250px;
   height: 120px;
   position: absolute;
@@ -272,7 +272,7 @@
   width: 15px;
   height: 15px;
   border-radius: 50%;
-  background-color: #a87cff;
+  background-color: #FF6B00;
   animation: ball25 7s infinite;
   transform: translateY(10px);
   animation-timing-function: cubic-bezier(0.3, 1.18, 0.63, 1.28);
@@ -360,4 +360,25 @@
   .loader-title {
     font-size: 18px;
   }
+}
+
+.loader-skip-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  color: #1a1a1a;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 99999;
+}
+.loader-skip-btn:hover {
+  background: #000;
+  color: #fff;
+  border-color: #000;
 }

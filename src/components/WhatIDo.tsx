@@ -25,7 +25,7 @@ const WhatIDo = () => {
     };
   }, []);
   return (
-    <div className="whatIDO">
+    <div className="whatIDO" id="what-i-do">
       <div className="what-box">
         <h2 className="title">
           W<span className="hat-h2">HAT</span>
@@ -87,28 +87,29 @@ const WhatIDo = () => {
             <div className="what-corner"></div>
 
             <div className="what-content-in">
-              <h3>DEVELOP</h3>
-              <h4>Description</h4>
+              <h3>BACKEND & SYSTEMS</h3>
+              <h4>Architecture & APIs</h4>
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas
-                quia aliquid laboriosam ducimus sit molestiae.
+                Architecting robust backend services, scalable REST APIs,
+                database schemas, authentication, and real-time WebSockets.
               </p>
               <h5>Skillset & tools</h5>
               <div className="what-content-flex">
-                <div className="what-tags">JavaScript</div>
-                <div className="what-tags">TypeScript</div>
-                <div className="what-tags">Three.js</div>
-                <div className="what-tags">React</div>
-                <div className="what-tags">Css</div>
                 <div className="what-tags">Node.js</div>
-                <div className="what-tags">Next.js</div>
                 <div className="what-tags">Express.js</div>
-                <div className="what-tags">PHP</div>
-                <div className="what-tags">MySql</div>
+                <div className="what-tags">TypeScript</div>
+                <div className="what-tags">Python</div>
+                <div className="what-tags">FastAPI</div>
+                <div className="what-tags">PostgreSQL</div>
+                <div className="what-tags">MongoDB</div>
+                <div className="what-tags">Socket.IO</div>
+                <div className="what-tags">Redis</div>
+                <div className="what-tags">Docker</div>
               </div>
               <div className="what-arrow"></div>
             </div>
           </div>
+
           <div
             className="what-content what-noTouch"
             ref={(el) => setRef(el, 1)}
@@ -128,22 +129,62 @@ const WhatIDo = () => {
             </div>
             <div className="what-corner"></div>
             <div className="what-content-in">
-              <h3>DESIGN</h3>
-              <h4>Description</h4>
+              <h3>AI & MULTI-AGENT</h3>
+              <h4>Intelligent Systems</h4>
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas
-                quia aliquid laboriosam ducimus sit molestiae
+                Designing autonomous multi-agent orchestration workflows,
+                LLM integrations, vector database embeddings, and RAG pipelines.
               </p>
               <h5>Skillset & tools</h5>
               <div className="what-content-flex">
-                <div className="what-tags">Blender</div>
-                <div className="what-tags">Zbrush</div>
-                <div className="what-tags">UI Design</div>
-                <div className="what-tags">Motion</div>
-                <div className="what-tags">Rigging</div>
-                <div className="what-tags">3D Animation</div>
-                <div className="what-tags">Character Design</div>
-                <div className="what-tags">Modelling</div>
+                <div className="what-tags">LangChain</div>
+                <div className="what-tags">LangGraph</div>
+                <div className="what-tags">Gemini API</div>
+                <div className="what-tags">Qdrant</div>
+                <div className="what-tags">Vector DBs</div>
+                <div className="what-tags">LLM Agents</div>
+                <div className="what-tags">Vercel AI SDK</div>
+                <div className="what-tags">TensorFlow.js</div>
+              </div>
+              <div className="what-arrow"></div>
+            </div>
+          </div>
+
+          <div
+            className="what-content what-noTouch"
+            ref={(el) => setRef(el, 2)}
+          >
+            <div className="what-border1">
+              <svg height="100%">
+                <line
+                  x1="0"
+                  y1="100%"
+                  x2="100%"
+                  y2="100%"
+                  stroke="white"
+                  strokeWidth="2"
+                  strokeDasharray="6,6"
+                />
+              </svg>
+            </div>
+            <div className="what-corner"></div>
+            <div className="what-content-in">
+              <h3>FULL-STACK APPS</h3>
+              <h4>Frontend & Platform Engineering</h4>
+              <p>
+                Engineering production-ready web apps with clean component
+                architectures, state management, and developer event tooling.
+              </p>
+              <h5>Skillset & tools</h5>
+              <div className="what-content-flex">
+                <div className="what-tags">React.js</div>
+                <div className="what-tags">Next.js</div>
+                <div className="what-tags">Tailwind CSS</div>
+                <div className="what-tags">Redux Toolkit</div>
+                <div className="what-tags">GSAP</div>
+                <div className="what-tags">Vite</div>
+                <div className="what-tags">RabbitMQ</div>
+                <div className="what-tags">Zod / JWT</div>
               </div>
               <div className="what-arrow"></div>
             </div>

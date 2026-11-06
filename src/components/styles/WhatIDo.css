@@ -34,44 +34,44 @@
 }
 .what-box-in {
   flex-direction: column;
-  height: 500px;
-  margin-left: 200px;
+  height: 560px;
+  margin-left: 180px;
   position: relative;
   display: none;
 }
 .what-content {
-  width: 450px;
-  height: 33%;
-  min-height: 50%;
+  width: 470px;
+  height: 33.33%;
+  min-height: 33.33%;
   transition: 0.5s;
-  /* border: 0.5px dashed rgba(255, 255, 255, 0.3); */
   position: relative;
-  padding: 50px;
+  padding: 24px 36px;
   box-sizing: border-box;
 }
 
 .what-noTouch:hover,
 .what-content-active {
-  min-height: 67%;
-  padding: 40px 50px;
+  min-height: 54%;
+  padding: 24px 36px;
 }
 
 .what-noTouch:hover ~ .what-content,
 .what-box-in:hover .what-noTouch:not(:hover),
 .what-content.what-sibling {
-  min-height: 33%;
-  padding: 10px 50px;
+  min-height: 23%;
+  padding: 12px 36px;
 }
 .what-content h3 {
-  font-size: 35px;
+  font-size: 26px;
   letter-spacing: 1px;
   margin: 0;
 }
 .what-content p {
-  font-size: 14px;
+  font-size: 13px;
   line-height: 18px;
-  font-weight: 200;
-  letter-spacing: 0.7px;
+  font-weight: 300;
+  letter-spacing: 0.4px;
+  color: #D4D4D4;
 }
 .what-content h4 {
   font-weight: 300;

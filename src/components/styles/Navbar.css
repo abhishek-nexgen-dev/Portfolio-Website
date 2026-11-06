@@ -30,6 +30,41 @@
   font-weight: 600;
   cursor: pointer;
 }
+.navbar-brand-wrap {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.navbar-recruiter-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(255, 107, 0, 0.12);
+  border: 1px solid rgba(255, 107, 0, 0.35);
+  color: #FFB380;
+  padding: 5px 12px;
+  border-radius: 9999px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+.navbar-recruiter-btn:hover {
+  background: linear-gradient(135deg, #FF6B00 0%, #CC5200 100%);
+  color: #ffffff;
+  border-color: #FF6B00;
+  box-shadow: 0 0 15px rgba(255, 107, 0, 0.4);
+}
+.recruiter-live-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #22c55e;
+  box-shadow: 0 0 6px #22c55e;
+}
+
 .navbar-connect {
   position: absolute;
   display: none;
@@ -52,30 +87,35 @@
   .header ul {
     flex-direction: row;
     align-items: center;
-    font-size: 14px;
+    font-size: 13px;
+    column-gap: 18px;
   }
   .header ul li {
-    color: #eae5ec;
+    color: #FFFFFF;
   }
   .navbar-title {
     font-size: 16px;
   }
 }
 @media only screen and (min-width: 900px) {
+  .header ul {
+    column-gap: 24px;
+    font-size: 14px;
+  }
   .navbar-connect {
     display: block;
   }
 }
 @media only screen and (min-width: 1200px) {
   .header {
-    padding: 35px 0px;
+    padding: 30px 0px;
   }
   .header ul {
-    column-gap: 80px;
-    font-size: 16px;
+    column-gap: 28px;
+    font-size: 14px;
   }
   .navbar-connect {
-    font-size: 16px;
+    font-size: 15px;
   }
   .navbar-title {
     font-size: 18px;

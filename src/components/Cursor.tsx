@@ -1,51 +1,71 @@
 import { useEffect, useRef } from "react";
 import "./styles/Cursor.css";
-import gsap from "gsap";
 
 const Cursor = () => {
   const cursorRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
+    // Disable custom cursor on touch/mobile devices for optimal performance
+    if (window.matchMedia("(pointer: coarse)").matches) return;
+
     let hover = false;
-    const cursor = cursorRef.current!;
-    const mousePos = { x: 0, y: 0 };
-    const cursorPos = { x: 0, y: 0 };
-    document.addEventListener("mousemove", (e) => {
+    const cursor = cursorRef.current;
+    if (!cursor) return;
+
+    const mousePos = { x: -100, y: -100 };
+    const cursorPos = { x: -100, y: -100 };
+    let animationFrameId: number;
+
+    const onMouseMove = (e: MouseEvent) => {
       mousePos.x = e.clientX;
       mousePos.y = e.clientY;
-    });
-    requestAnimationFrame(function loop() {
+    };
+
+    window.addEventListener("mousemove", onMouseMove, { passive: true });
+
+    function loop() {
       if (!hover) {
-        const delay = 6;
+        const delay = 4;
         cursorPos.x += (mousePos.x - cursorPos.x) / delay;
         cursorPos.y += (mousePos.y - cursorPos.y) / delay;
-        gsap.to(cursor, { x: cursorPos.x, y: cursorPos.y, duration: 0.1 });
-        // cursor.style.transform = `translate(${cursorPos.x}px, ${cursorPos.y}px)`;
+        cursor!.style.transform = `translate3d(${cursorPos.x}px, ${cursorPos.y}px, 0)`;
       }
-      requestAnimationFrame(loop);
-    });
-    document.querySelectorAll("[data-cursor]").forEach((item) => {
-      const element = item as HTMLElement;
-      element.addEventListener("mouseover", (e: MouseEvent) => {
-        const target = e.currentTarget as HTMLElement;
-        const rect = target.getBoundingClientRect();
+      animationFrameId = requestAnimationFrame(loop);
+    }
+    animationFrameId = requestAnimationFrame(loop);
 
-        if (element.dataset.cursor === "icons") {
-          cursor.classList.add("cursor-icons");
+    const onMouseOver = (e: MouseEvent) => {
+      const target = (e.target as HTMLElement).closest("[data-cursor]") as HTMLElement | null;
+      if (!target) return;
+      const rect = target.getBoundingClientRect();
 
-          gsap.to(cursor, { x: rect.left, y: rect.top, duration: 0.1 });
-          //   cursor.style.transform = `translate(${rect.left}px,${rect.top}px)`;
-          cursor.style.setProperty("--cursorH", `${rect.height}px`);
-          hover = true;
-        }
-        if (element.dataset.cursor === "disable") {
-          cursor.classList.add("cursor-disable");
-        }
-      });
-      element.addEventListener("mouseout", () => {
-        cursor.classList.remove("cursor-disable", "cursor-icons");
-        hover = false;
-      });
-    });
+      if (target.dataset.cursor === "icons") {
+        cursor.classList.add("cursor-icons");
+        cursor.style.transform = `translate3d(${rect.left}px, ${rect.top}px, 0)`;
+        cursor.style.setProperty("--cursorH", `${rect.height}px`);
+        hover = true;
+      }
+      if (target.dataset.cursor === "disable") {
+        cursor.classList.add("cursor-disable");
+      }
+    };
+
+    const onMouseOut = (e: MouseEvent) => {
+      const target = (e.target as HTMLElement).closest("[data-cursor]") as HTMLElement | null;
+      if (!target) return;
+      cursor.classList.remove("cursor-disable", "cursor-icons");
+      hover = false;
+    };
+
+    document.addEventListener("mouseover", onMouseOver, { passive: true });
+    document.addEventListener("mouseout", onMouseOut, { passive: true });
+
+    return () => {
+      window.removeEventListener("mousemove", onMouseMove);
+      document.removeEventListener("mouseover", onMouseOver);
+      document.removeEventListener("mouseout", onMouseOut);
+      cancelAnimationFrame(animationFrameId);
+    };
   }, []);
 
   return <div className="cursor-main" ref={cursorRef}></div>;
