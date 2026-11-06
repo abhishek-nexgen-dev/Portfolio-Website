@@ -30,13 +30,21 @@ function cn(...classes: (string | undefined | null | boolean)[]): string {
 
 const useIsomorphicLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect;
 
-const segmenter =
-  typeof Intl !== 'undefined' && (Intl as any).Segmenter
-    ? new (Intl as any).Segmenter('en', { granularity: 'grapheme' })
-    : null;
+type Segment = { segment: string };
+type SegmenterInstance = { segment: (text: string) => Iterable<Segment> };
+type SegmenterCtor = new (locale: string, options: { granularity: string }) => SegmenterInstance;
+
+const SegmenterClass =
+  typeof Intl !== 'undefined'
+    ? (Intl as unknown as { Segmenter?: SegmenterCtor }).Segmenter
+    : undefined;
+
+const segmenter: SegmenterInstance | null = SegmenterClass
+  ? new SegmenterClass('en', { granularity: 'grapheme' })
+  : null;
 
 const splitIntoCharacters = (text: string): string[] =>
-  segmenter ? Array.from((segmenter as any).segment(text), (segment: any) => segment.segment) : Array.from(text);
+  segmenter ? Array.from(segmenter.segment(text), (segment: Segment) => segment.segment) : Array.from(text);
 
 const withFilter = <T,>(state: T, filter: string): T =>
   state && typeof state === 'object' && !Array.isArray(state) ? ({ ...state, filter } as T) : state;

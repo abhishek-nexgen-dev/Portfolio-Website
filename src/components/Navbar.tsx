@@ -7,7 +7,7 @@ import RecruiterModal from './RecruiterModal'
 import CircularText from './CircularText'
 
 gsap.registerPlugin(ScrollSmoother, ScrollTrigger)
-export let smoother: ScrollSmoother
+import { setSmoother, getSmoother } from '../context/smoother'
 
 const NAV_LINKS = [
   { href: '#landingDiv', label: 'HOME' },
@@ -15,7 +15,6 @@ const NAV_LINKS = [
   { href: '#career', label: 'EXPERIENCE' },
   { href: '#work', label: 'WORK' },
   { href: '#skills', label: 'SKILLS' },
-  { href: '#testimonials', label: 'REVIEWS' },
   { href: '#contact', label: 'CONTACT' },
 ]
 
@@ -43,18 +42,21 @@ const Navbar = () => {
   }, [mobileOpen])
 
   useEffect(() => {
-    smoother = ScrollSmoother.create({
-      wrapper: '#smooth-wrapper',
-      content: '#smooth-content',
-      smooth: 0.8,
-      speed: 1.0,
-      effects: false,
-      autoResize: true,
-      ignoreMobileResize: true
-    })
+    setSmoother(
+      ScrollSmoother.create({
+        wrapper: '#smooth-wrapper',
+        content: '#smooth-content',
+        smooth: 0.8,
+        speed: 1.0,
+        effects: false,
+        autoResize: true,
+        ignoreMobileResize: true
+      })
+    )
+    const smoother = getSmoother()
 
-    smoother.scrollTop(0)
-    smoother.paused(true)
+    smoother?.scrollTop(0)
+    smoother?.paused(true)
 
     const links = document.querySelectorAll('.header ul a')
     links.forEach(elem => {
@@ -65,7 +67,7 @@ const Navbar = () => {
           e.preventDefault()
           const targetElem = e.currentTarget as HTMLAnchorElement
           const section = targetElem.getAttribute('data-href')
-          smoother.scrollTo(section, true, 'top top')
+          getSmoother()?.scrollTo(section, true, 'top top')
         }
       })
     })

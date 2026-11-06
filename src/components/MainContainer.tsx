@@ -1,23 +1,22 @@
-import { lazy, PropsWithChildren, Suspense, useEffect, useRef, useState } from "react";
+import { lazy, PropsWithChildren, Suspense, useEffect, useState } from "react";
 import About from "./About";
 import Career from "./Career";
 import Contact from "./Contact";
 import Landing from "./Landing";
 import Navbar from "./Navbar";
-import SocialIcons from "./SocialIcons";
+
 import WhatIDo from "./WhatIDo";
 import Work from "./Work";
 import TechSkills from "./TechSkills";
-import Testimonials from "./Testimonials";
 import Exploring from "./Exploring";
+import BeyondTheCode from "./BeyondTheCode";
 import setSplitText from "./utils/splitText";
 
-// Code-split: the WebGL glow trail and the 2.2 MB TechStack 3D scene
-// (three + @react-three/*) are NOT part of the initial bundle. They
-// load only when needed (idle time / near viewport), cutting the
-// initial JS transfer by ~60-70%.
+// Code-split: the WebGL glow trail
+// is NOT part of the initial bundle. It loads only when needed
+// (idle time / near viewport), keeping first paint fast.
 const GlowCursor = lazy(() => import("./GlowCursor"));
-const TechStack = lazy(() => import("./TechStack"));
+
 
 const MainContainer = ({ children }: PropsWithChildren) => {
   const [isDesktopView, setIsDesktopView] = useState<boolean>(
@@ -44,27 +43,6 @@ const MainContainer = ({ children }: PropsWithChildren) => {
       w.clearTimeout(idle as unknown as ReturnType<typeof setTimeout>);
     };
   }, [isFinePointer]);
-
-  // Defer TechStack (2.2 MB three-ecosystem chunk) until the user
-  // scrolls near it. A same-height placeholder preserves scroll height
-  // so ScrollSmoother / ScrollTrigger measurements stay correct.
-  const [techNear, setTechNear] = useState(false);
-  const techSentinelRef = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    const el = techSentinelRef.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setTechNear(true);
-          observer.disconnect();
-        }
-      },
-      { rootMargin: "600px 0px" }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
 
   useEffect(() => {
     const resizeHandler = () => {
@@ -107,7 +85,7 @@ const MainContainer = ({ children }: PropsWithChildren) => {
         </Suspense>
       )}
       <Navbar />
-      <SocialIcons />
+      {/* <SocialIcons /> */}
       {isDesktopView && children}
       <div id="smooth-wrapper">
         <div id="smooth-content">
@@ -118,16 +96,8 @@ const MainContainer = ({ children }: PropsWithChildren) => {
             <Career />
             <Work />
             <TechSkills />
-            {isDesktopView &&
-              (techNear ? (
-                <Suspense fallback={<div style={{ height: "100vh" }} />}>
-                  <TechStack />
-                </Suspense>
-              ) : (
-                <div ref={techSentinelRef} style={{ height: "100vh" }} aria-hidden="true" />
-              ))}
-            <Testimonials />
             <Exploring />
+            <BeyondTheCode />
             <Contact />
           </div>
         </div>
