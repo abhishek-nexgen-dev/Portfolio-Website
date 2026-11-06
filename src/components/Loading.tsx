@@ -1,49 +1,56 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./styles/Loading.css";
 import { useLoading } from "../context/LoadingProvider";
 import Marquee from "react-fast-marquee";
-import { MdArrowForward } from "react-icons/md";
+import gsap from "gsap";
+import { SplitText } from "gsap/SplitText";
+
+gsap.registerPlugin(SplitText);
 
 const Loading = ({ percent }: { percent: number }) => {
   const { setIsLoading } = useLoading();
   const [loaded, setLoaded] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const [clicked, setClicked] = useState(false);
+  const dismissedRef = useRef(false);
+
+  const dismiss = async () => {
+    if (dismissedRef.current) return;
+    dismissedRef.current = true;
+    setClicked(true);
+    try {
+      const module = await import("./utils/initialFX");
+      if (module.initialFX) module.initialFX();
+    } catch (e) {
+      console.error("initialFX failed:", e);
+    }
+    // Ensure scroll is always restored even if intro animation fails
+    document.body.style.overflowY = "auto";
+    setIsLoading(false);
+  };
 
   useEffect(() => {
     if (percent >= 100 && !loaded) {
       setLoaded(true);
-      const timer = setTimeout(() => {
-        setIsLoaded(true);
-      }, 200);
+      const timer = setTimeout(() => setIsLoaded(true), 200);
       return () => clearTimeout(timer);
     }
   }, [percent, loaded]);
 
   useEffect(() => {
-    if (isLoaded) {
-      setClicked(true);
-      import("./utils/initialFX").then((module) => {
-        const timer = setTimeout(() => {
-          if (module.initialFX) {
-            module.initialFX();
-          }
-          setIsLoading(false);
-        }, 350);
-        return () => clearTimeout(timer);
-      });
-    }
-  }, [isLoaded, setIsLoading]);
+    if (!isLoaded) return;
+    const timer = setTimeout(() => dismiss(), 350);
+    return () => clearTimeout(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isLoaded]);
 
-  const handleSkip = () => {
-    setClicked(true);
-    import("./utils/initialFX").then((module) => {
-      if (module.initialFX) {
-        module.initialFX();
-      }
-      setIsLoading(false);
-    });
-  };
+  // Failsafe: force-exit after 3.5s no matter what the 3D progress is.
+  useEffect(() => {
+    const timer = setTimeout(() => dismiss(), 3500);
+    return () => clearTimeout(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
 
   function handleMouseMove(e: React.MouseEvent<HTMLElement>) {
     const { currentTarget: target } = e;
@@ -60,14 +67,6 @@ const Loading = ({ percent }: { percent: number }) => {
         <a href="/#" className="loader-title" data-cursor="disable">
           AKG.
         </a>
-        <button
-          className="loader-skip-btn"
-          onClick={handleSkip}
-          data-cursor="disable"
-          title="Skip intro and view portfolio immediately"
-        >
-          Skip to Portfolio <MdArrowForward />
-        </button>
         <div className={`loaderGame ${clicked ? "loader-out" : ""}`}>
           <div className="loaderGame-container">
             <div className="loaderGame-in">

@@ -71,7 +71,7 @@ const Landing = ({ children }: PropsWithChildren) => {
            
 
             {/* High-Impact CTA Group */}
-            <div className="hero-cta-group">
+            <div className="hero-cta-group mt-1 flex max-w-[440px] flex-wrap items-center gap-2.5">
               <a href="#work" className="hero-btn-primary" data-cursor="disable">
                 <span>Explore Projects</span>
                 <FiArrowUpRight className="hero-btn-arrow" />

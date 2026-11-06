@@ -18,7 +18,7 @@ export default defineConfig({
           if (id.includes("@react-three") || id.includes("three-mesh-bvh") || id.includes("maath")) {
             return "three-ecosystem";
           }
-          if (id.includes("gsap") || id.includes("gsap-trial")) {
+          if (id.includes("gsap")) {
             return "gsap-vendor";
           }
           if (id.includes("react-icons")) {
