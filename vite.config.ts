@@ -9,6 +9,11 @@ export default defineConfig({
     target: "esnext",
     minify: "esbuild",
     cssMinify: true,
+    cssCodeSplit: true,
+    sourcemap: false,
+    // Skip the modulepreload polyfill — all modern browsers support
+    // <link rel="modulepreload"> natively. Smaller runtime.
+    modulePreload: { polyfill: false },
     rollupOptions: {
       output: {
         manualChunks(id) {
@@ -20,6 +25,11 @@ export default defineConfig({
           }
           if (id.includes("gsap")) {
             return "gsap-vendor";
+          }
+          // Split animation libs into their own cacheable chunks so
+          // the first paint does not wait for them.
+          if (id.includes("node_modules/motion") || id.includes("node_modules/framer-motion")) {
+            return "motion-vendor";
           }
           if (id.includes("react-icons")) {
             return "icons-vendor";

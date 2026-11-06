@@ -96,7 +96,6 @@ const Work = () => {
                     selectedCategory === cat ? "active" : ""
                   }`}
                   onClick={() => setSelectedCategory(cat)}
-                  data-cursor="disable"
                 >
                   {cat}
                 </button>
@@ -132,7 +131,6 @@ const Work = () => {
                     <button
                       className="work-btn-case-study"
                       onClick={() => setSelectedProject(project)}
-                      data-cursor="disable"
                     >
                       <MdAutoStories /> View Case Study
                     </button>
@@ -141,7 +139,6 @@ const Work = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="work-btn-icon"
-                      data-cursor="disable"
                       aria-label="GitHub Repository"
                       title="GitHub Repository"
                     >
@@ -153,7 +150,6 @@ const Work = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="work-btn-icon"
-                        data-cursor="disable"
                         aria-label="Live Demo"
                         title="Live Demo"
                       >

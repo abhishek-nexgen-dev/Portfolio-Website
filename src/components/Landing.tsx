@@ -72,7 +72,7 @@ const Landing = ({ children }: PropsWithChildren) => {
 
             {/* High-Impact CTA Group */}
             <div className="hero-cta-group mt-1 flex max-w-[440px] flex-wrap items-center gap-2.5">
-              <a href="#work" className="hero-btn-primary" data-cursor="disable">
+              <a href="#work" className="hero-btn-primary">
                 <span>Explore Projects</span>
                 <FiArrowUpRight className="hero-btn-arrow" />
               </a>
@@ -80,7 +80,6 @@ const Landing = ({ children }: PropsWithChildren) => {
               <button
                 className="hero-btn-recruiter"
                 onClick={() => setIsRecruiterOpen(true)}
-                data-cursor="disable"
                 title="View Recruiter Executive Brief & Resume"
               >
                 <MdDownload className="recruiter-btn-icon" />
@@ -90,7 +89,6 @@ const Landing = ({ children }: PropsWithChildren) => {
               <button
                 className={`hero-btn-copy-email ${copiedEmail ? "copied" : ""}`}
                 onClick={handleCopyEmail}
-                data-cursor="disable"
                 title={copiedEmail ? "Email copied to clipboard!" : "Copy email address"}
               >
                 {copiedEmail ? (

@@ -32,7 +32,9 @@ const Scene = () => {
         powerPreference: "high-performance",
       });
       renderer.setSize(container.width, container.height);
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+      // Cap DPR at 1.25 — ~44% fewer pixels than 1.5 on retina,
+      // with no visible quality loss for the hero character.
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.25));
       renderer.toneMapping = THREE.ACESFilmicToneMapping;
       renderer.toneMappingExposure = 1;
       canvasDiv.current.appendChild(renderer.domElement);

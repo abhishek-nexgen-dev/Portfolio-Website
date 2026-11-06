@@ -1,7 +1,5 @@
-import { useState } from "react";
 import "./styles/Exploring.css";
 import { TbBrain, TbHierarchy2, TbServer, TbCode, TbCloudCheck } from "react-icons/tb";
-import { MdOutlineArchitecture, MdMenuBook, MdExplore } from "react-icons/md";
 
 const exploringTopics = [
   {
@@ -99,10 +97,6 @@ const journalNotes = [
 ];
 
 const Exploring = () => {
-  const [activeTab, setActiveTab] = useState<"exploring" | "architecture" | "journal">(
-    "exploring"
-  );
-
   return (
     <section className="exploring-section section-container" id="exploring">
       <div className="exploring-header">
@@ -114,34 +108,9 @@ const Exploring = () => {
           I believe continuous learning is core to engineering. Here is what I am
           exploring, designing in the architecture lab, and documenting in public.
         </p>
-
-        <div className="exploring-tabs" role="tablist">
-          <button
-            className={`tab-btn ${activeTab === "exploring" ? "active" : ""}`}
-            onClick={() => setActiveTab("exploring")}
-            data-cursor="disable"
-          >
-            <MdExplore /> Currently Exploring
-          </button>
-          <button
-            className={`tab-btn ${activeTab === "architecture" ? "active" : ""}`}
-            onClick={() => setActiveTab("architecture")}
-            data-cursor="disable"
-          >
-            <MdOutlineArchitecture /> Architecture Lab
-          </button>
-          <button
-            className={`tab-btn ${activeTab === "journal" ? "active" : ""}`}
-            onClick={() => setActiveTab("journal")}
-            data-cursor="disable"
-          >
-            <MdMenuBook /> Engineering Journal
-          </button>
-        </div>
       </div>
 
-      {activeTab === "exploring" && (
-        <div className="exploring-grid">
+      <div className="exploring-grid">
           {exploringTopics.map((topic, idx) => (
             <div key={idx} className="explore-card">
               <div className="explore-card-top">
@@ -159,9 +128,7 @@ const Exploring = () => {
             </div>
           ))}
         </div>
-      )}
 
-      {activeTab === "architecture" && (
         <div className="arch-lab-grid">
           {architectureBlueprints.map((blueprint, idx) => (
             <div key={idx} className="arch-card">
@@ -186,9 +153,7 @@ const Exploring = () => {
             </div>
           ))}
         </div>
-      )}
 
-      {activeTab === "journal" && (
         <div className="journal-grid">
           {journalNotes.map((note, idx) => (
             <div key={idx} className="journal-card">
@@ -201,7 +166,6 @@ const Exploring = () => {
             </div>
           ))}
         </div>
-      )}
     </section>
   );
 };

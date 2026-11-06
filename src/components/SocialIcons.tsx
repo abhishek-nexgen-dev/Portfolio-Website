@@ -85,7 +85,7 @@ const SocialIcons = () => {
 
   return (
     <div className="icons-section">
-      <div className="social-icons" data-cursor="icons" id="social">
+      <div className="social-icons" id="social">
         <span>
           <a
             href="https://github.com/abhishek-nexgen-dev"
@@ -125,7 +125,6 @@ const SocialIcons = () => {
           e.preventDefault();
           setIsRecruiterOpen(true);
         }}
-        data-cursor="disable"
         title="View Executive Resume & Brief"
       >
         <HoverLinks text="RESUME" />

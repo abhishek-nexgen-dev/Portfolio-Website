@@ -3,7 +3,7 @@
   max-width: var(--cMaxWidth);
   width: var(--cWidth);
   bottom: 0;
-  z-index: 99;
+  z-index: var(--z-social);
   left: 50%;
   transform: translateX(-50%);
 }
@@ -45,7 +45,7 @@
 }
 .resume-button {
   position: absolute;
-  z-index: 99;
+  z-index: var(--z-social);
   display: flex;
   gap: 5px;
   bottom: 40px;
@@ -71,15 +71,6 @@ div.resume-button span {
   margin-top: -1px;
   display: flex;
   align-items: center;
-}
-.check-line {
-  position: fixed;
-  top: 655px;
-  left: 0;
-  height: 1px;
-  background-color: #ffffff;
-  width: 100%;
-  z-index: 99999;
 }
 @media only screen and (min-width: 900px) {
   .social-icons {

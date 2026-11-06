@@ -52,7 +52,6 @@ const RecruiterModal = ({ isOpen, onClose }: Props) => {
           className="recruiter-close-btn"
           onClick={onClose}
           aria-label="Close modal"
-          data-cursor="disable"
         >
           <MdClose />
         </button>
@@ -85,14 +84,12 @@ const RecruiterModal = ({ isOpen, onClose }: Props) => {
             href="/resume.pdf"
             download="Resume-Abhishek-Kumar-Gupta.pdf"
             className="recruiter-action-btn primary"
-            data-cursor="disable"
           >
             <MdDownload /> Download Resume (PDF)
           </a>
           <button
             onClick={copyEmail}
             className="recruiter-action-btn secondary"
-            data-cursor="disable"
           >
             {copied ? (
               <>
@@ -109,7 +106,6 @@ const RecruiterModal = ({ isOpen, onClose }: Props) => {
             target="_blank"
             rel="noopener noreferrer"
             className="recruiter-action-btn outline"
-            data-cursor="disable"
           >
             <FaLinkedinIn /> LinkedIn <MdArrowOutward />
           </a>
@@ -118,7 +114,6 @@ const RecruiterModal = ({ isOpen, onClose }: Props) => {
             target="_blank"
             rel="noopener noreferrer"
             className="recruiter-action-btn outline"
-            data-cursor="disable"
           >
             <FaGithub /> GitHub <MdArrowOutward />
           </a>
@@ -184,7 +179,7 @@ const RecruiterModal = ({ isOpen, onClose }: Props) => {
         <div className="recruiter-bottom">
           <div className="direct-contact-info">
             <span>Direct Email:</span>
-            <a href="mailto:abhishekg6889@gmail.com" data-cursor="disable">
+            <a href="mailto:abhishekg6889@gmail.com">
               <FaEnvelope /> abhishekg6889@gmail.com
             </a>
           </div>

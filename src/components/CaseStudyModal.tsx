@@ -40,7 +40,6 @@ const CaseStudyModal = ({ project, onClose }: Props) => {
           className="modal-close-btn"
           onClick={onClose}
           aria-label="Close modal"
-          data-cursor="disable"
         >
           <MdClose />
         </button>
@@ -58,7 +57,6 @@ const CaseStudyModal = ({ project, onClose }: Props) => {
               target="_blank"
               rel="noopener noreferrer"
               className="modal-link-btn"
-              data-cursor="disable"
             >
               <FaGithub /> Repository <MdArrowOutward />
             </a>
@@ -68,7 +66,6 @@ const CaseStudyModal = ({ project, onClose }: Props) => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="modal-link-btn primary"
-                data-cursor="disable"
               >
                 Live Demonstration <MdArrowOutward />
               </a>

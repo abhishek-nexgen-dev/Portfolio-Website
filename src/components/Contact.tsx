@@ -26,7 +26,6 @@ const Contact = () => {
             <p>
               <a
                 href="mailto:abhishekg6889@gmail.com"
-                data-cursor="disable"
                 className="contact-email-link"
               >
                 <FaEnvelope /> abhishekg6889@gmail.com
@@ -44,7 +43,6 @@ const Contact = () => {
               href="https://github.com/AbhishekNexGenDev"
               target="_blank"
               rel="noopener noreferrer"
-              data-cursor="disable"
               className="contact-social"
             >
               <span className="contact-social-label">
@@ -56,7 +54,6 @@ const Contact = () => {
               href="https://www.linkedin.com/in/abhisheknexgendev"
               target="_blank"
               rel="noopener noreferrer"
-              data-cursor="disable"
               className="contact-social"
             >
               <span className="contact-social-label">
@@ -68,7 +65,6 @@ const Contact = () => {
               href="https://x.com/AbhishekNexGen"
               target="_blank"
               rel="noopener noreferrer"
-              data-cursor="disable"
               className="contact-social"
             >
               <span className="contact-social-label">

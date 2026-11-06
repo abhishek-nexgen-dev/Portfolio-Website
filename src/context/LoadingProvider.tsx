@@ -1,11 +1,15 @@
 import {
   createContext,
+  lazy,
   PropsWithChildren,
+  Suspense,
   useContext,
   useEffect,
   useState,
 } from "react";
-import Loading from "../components/Loading";
+// Code-split: Loading pulls in gsap + react-fast-marquee. Keeping it
+// out of the main bundle lets the hero render without parsing that.
+const Loading = lazy(() => import("../components/Loading"));
 
 interface LoadingType {
   isLoading: boolean;
@@ -28,7 +32,11 @@ export const LoadingProvider = ({ children }: PropsWithChildren) => {
 
   return (
     <LoadingContext.Provider value={value as LoadingType}>
-      {isLoading && <Loading percent={loading} />}
+      {isLoading && (
+        <Suspense fallback={null}>
+          <Loading percent={loading} />
+        </Suspense>
+      )}
       <main className="main-body">{children}</main>
     </LoadingContext.Provider>
   );

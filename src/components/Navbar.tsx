@@ -15,7 +15,6 @@ const NAV_LINKS = [
   { href: '#career', label: 'EXPERIENCE' },
   { href: '#work', label: 'WORK' },
   { href: '#skills', label: 'SKILLS' },
-  { href: '#gallery', label: 'GALLERY' },
   { href: '#testimonials', label: 'REVIEWS' },
   { href: '#contact', label: 'CONTACT' },
 ]
@@ -79,7 +78,7 @@ const Navbar = () => {
     <>
       <header
         id="site-header"
-        className="header fixed left-1/2 top-0 z-[9999] flex w-[var(--cWidth)] max-w-[var(--cMaxWidth)] -translate-x-1/2 flex-wrap items-center justify-between gap-3 box-border -mb-[100px] px-0 py-4 lg:flex-nowrap lg:py-7"
+        className="header fixed left-1/2 top-0 z-[1000] flex w-[var(--cWidth)] max-w-[var(--cMaxWidth)] -translate-x-1/2 flex-wrap items-center justify-between gap-3 box-border -mb-[100px] px-0 py-4 lg:flex-nowrap lg:py-7"
       >
         {/* Brand */}
         <div className="flex shrink-0 items-center gap-4">
@@ -108,7 +107,6 @@ const Navbar = () => {
         {/* Center email — desktop only */}
         <a
           href="mailto:abhishekg6889@gmail.com"
-          data-cursor="disable"
           className="navbar-connect absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 whitespace-nowrap text-[15px] font-medium tracking-[1px] min-[1200px]:block"
         >
           abhishek.nexgen.dev@gmail.com

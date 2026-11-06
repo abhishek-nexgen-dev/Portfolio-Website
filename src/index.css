@@ -1,7 +1,6 @@
 
-@import url("https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap");
-
-
+/* Font is loaded via <link> in index.html (not @import) so it does not
+ * block CSS parsing — see index.html. */
 @import "tailwindcss";
 
 
@@ -28,6 +27,36 @@
   --backgroundColor: #000000;
   --vh: 100vh;
   --vh: 100svh;
+
+  /* ---- Z-INDEX SCALE (single source of truth) -------------------------
+   * The glow trail is ALWAYS the lowest layer: it shows through the
+   * page background and never covers the character or any text, so
+   * the text/character sit on top of it for the cleanest effect.
+   *  1  glow trail (GlowCursor, fixed background layer — always lowest)
+   * 11  3D character (fixed on desktop, root level)
+   * 20  smooth content wrapper (#smooth-wrapper — all sections + hero
+   *     text live INSIDE it, so the whole page paints above the glow
+   *     and above the character; hero text 20/21 is internal to it)
+   * 15  ambient glows / 12 nav fade (hero, behind text, above character)
+   *  5  page sections (internal to the content wrapper)
+   * 90  social icons / resume button (fixed side rails)
+   * 1000 navbar (fixed header)
+   * 2000 modals (CaseStudy / Recruiter)
+   * 3000 loading screen (topmost, dismissed after intro)
+   * Inner-element z-indexes (inside a component's own stacking
+   * context) stay small and local — they never compete globally. */
+  --z-glow: 1;
+  --z-section: 5;
+  --z-character: 11;
+  --z-ambient: 15;
+  --z-nav-fade: 12;
+  --z-content: 20;
+  --z-hero-text: 20;
+  --z-hero-info: 21;
+  --z-social: 90;
+  --z-navbar: 1000;
+  --z-modal: 2000;
+  --z-loading: 3000;
 }
 h1,
 h2,

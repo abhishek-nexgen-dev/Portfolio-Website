@@ -6,7 +6,7 @@
   margin-bottom: 20px;
   flex-wrap: wrap;
   gap: 16px;
-  z-index: 10;
+  z-index: var(--z-section);
   position: relative;
 }
 .work-pill {

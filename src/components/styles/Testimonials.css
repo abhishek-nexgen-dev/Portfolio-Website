@@ -6,7 +6,7 @@
   padding: 110px 0 90px;
   margin: 0 auto;
   position: relative;
-  z-index: 5;
+  z-index: var(--z-section);
   width: var(--cWidth);
   max-width: var(--cMaxWidth);
 }
