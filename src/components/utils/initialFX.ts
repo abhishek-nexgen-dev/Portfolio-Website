@@ -77,7 +77,6 @@ export function initialFX() {
     [
       ".hero-status-pill-secondary",
       ".hero-bio",
-      ".hero-hud-card",
       ".landing-info .hero-cta-group",
       ".landing-info-glow",
     ],

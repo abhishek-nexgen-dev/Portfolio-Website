@@ -39,6 +39,7 @@ const WorkImage = (props: Props) => {
           src={props.image}
           alt={props.alt || "Project preview"}
           loading="lazy"
+          decoding="async"
           onError={(e) => {
             (e.target as HTMLImageElement).src = "/images/placeholder.webp";
           }}

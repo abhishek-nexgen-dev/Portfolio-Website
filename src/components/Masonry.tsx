@@ -11,8 +11,7 @@ import {
   type PointerEvent as ReactPointerEvent
 } from 'react';
 import { createPortal } from 'react-dom';
-import { HugeiconsIcon } from '@hugeicons/react';
-import { ArrowLeft01Icon, ArrowRight01Icon, ArrowUpRight01Icon, Cancel01Icon } from '@hugeicons/core-free-icons';
+import { FiArrowUpRight, FiX, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 
 export interface MasonryItem {
   id: string | number;
@@ -1027,6 +1026,7 @@ const Masonry = ({
                 alt={item.alt ?? item.title ?? ''}
                 draggable={false}
                 decoding="async"
+                loading="lazy"
                 data-loaded={loaded.current.has(id) ? '' : undefined}
                 ref={image => {
                   if (image?.complete && image.naturalWidth && !loaded.current.has(id)) markLoaded(id);
@@ -1123,7 +1123,7 @@ const Masonry = ({
                 {openItem.url && (
                   <a href={openItem.url} target="_blank" rel="noopener noreferrer">
                     Open
-                    <HugeiconsIcon icon={ArrowUpRight01Icon} size={16} strokeWidth={2} />
+                    <FiArrowUpRight size={16} />
                   </a>
                 )}
               </div>
@@ -1136,7 +1136,7 @@ const Masonry = ({
               aria-label="Close"
               onClick={closeBox}
             >
-              <HugeiconsIcon icon={Cancel01Icon} size={20} strokeWidth={2} />
+              <FiX size={20} />
             </button>
             {ordered.length > 1 && (
               <>
@@ -1147,7 +1147,7 @@ const Masonry = ({
                   aria-label="Previous"
                   onClick={() => stepBox(-1)}
                 >
-                  <HugeiconsIcon icon={ArrowLeft01Icon} size={20} strokeWidth={2} />
+                  <FiChevronLeft size={20} />
                 </button>
                 <button
                   type="button"
@@ -1156,7 +1156,7 @@ const Masonry = ({
                   aria-label="Next"
                   onClick={() => stepBox(1)}
                 >
-                  <HugeiconsIcon icon={ArrowRight01Icon} size={20} strokeWidth={2} />
+                  <FiChevronRight size={20} />
                 </button>
               </>
             )}

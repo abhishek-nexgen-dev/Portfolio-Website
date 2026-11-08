@@ -1,9 +1,13 @@
 import { useEffect, useRef } from "react";
 import "./styles/WhatIDo.css";
+import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const WhatIDo = () => {
   const containerRef = useRef<(HTMLDivElement | null)[]>([]);
+  const sectionRef = useRef<HTMLDivElement>(null);
   const setRef = (el: HTMLDivElement | null, index: number) => {
     containerRef.current[index] = el;
   };
@@ -22,7 +26,31 @@ const WhatIDo = () => {
         }
       });
     }
+
+    const ctx = gsap.context(() => {
+      const validContainers = containers.filter(Boolean) as HTMLElement[];
+      if (validContainers.length > 0) {
+        gsap.fromTo(
+          validContainers,
+          { opacity: 0, y: 30 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            stagger: 0.15,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: ".what-box-in",
+              start: "top 80%",
+              toggleActions: "play none none reverse",
+            },
+          }
+        );
+      }
+    }, sectionRef);
+
     return () => {
+      ctx.revert();
       containers.forEach((container, index) => {
         if (container) {
           container.removeEventListener("click", handlers[index]);
@@ -31,7 +59,7 @@ const WhatIDo = () => {
     };
   }, []);
   return (
-    <div className="whatIDO" id="what-i-do">
+    <div className="whatIDO" id="what-i-do" ref={sectionRef}>
       <div className="what-box">
         <h2 className="title">
           W<span className="hat-h2">HAT</span>

@@ -85,7 +85,6 @@ const MainContainer = ({ children }: PropsWithChildren) => {
         </Suspense>
       )}
       <Navbar />
-      {/* <SocialIcons /> */}
       {isDesktopView && children}
       <div id="smooth-wrapper">
         <div id="smooth-content">

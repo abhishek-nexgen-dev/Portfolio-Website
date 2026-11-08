@@ -1,13 +1,68 @@
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { MdArrowOutward, MdCopyright, MdLocationOn } from "react-icons/md";
 import { FaGithub, FaLinkedinIn, FaXTwitter, FaEnvelope } from "react-icons/fa6";
 import "./styles/Contact.css";
 
+gsap.registerPlugin(ScrollTrigger);
+
 const Contact = () => {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const headlineRef = useRef<HTMLDivElement>(null);
+  const flexRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      if (headlineRef.current) {
+        gsap.fromTo(
+          headlineRef.current.children,
+          { opacity: 0, y: 35 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.85,
+            stagger: 0.15,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: headlineRef.current,
+              start: "top 82%",
+              toggleActions: "play none none reverse",
+            },
+          }
+        );
+      }
+
+      if (flexRef.current) {
+        const boxes = flexRef.current.querySelectorAll(".contact-box");
+        gsap.fromTo(
+          boxes,
+          { opacity: 0, y: 45, scale: 0.97 },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.8,
+            stagger: 0.14,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: flexRef.current,
+              start: "top 80%",
+              toggleActions: "play none none reverse",
+            },
+          }
+        );
+      }
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <div className="contact-section section-container" id="contact">
+    <div className="contact-section section-container" id="contact" ref={sectionRef}>
       <div className="contact-container">
         <h3>Contact</h3>
-        <div className="contact-headline-wrap">
+        <div className="contact-headline-wrap" ref={headlineRef}>
           <h2>
             Have an Idea? <span>Let's Build</span> Something Meaningful.
           </h2>
@@ -20,7 +75,7 @@ const Contact = () => {
           </p>
         </div>
 
-        <div className="contact-flex">
+        <div className="contact-flex" ref={flexRef}>
           <div className="contact-box">
             <h4>Direct Reach</h4>
             <p>

@@ -26,11 +26,6 @@ export default defineConfig({
           if (id.includes("gsap")) {
             return "gsap-vendor";
           }
-          // Split animation libs into their own cacheable chunks so
-          // the first paint does not wait for them.
-          if (id.includes("node_modules/motion") || id.includes("node_modules/framer-motion")) {
-            return "motion-vendor";
-          }
           if (id.includes("react-icons")) {
             return "icons-vendor";
           }
