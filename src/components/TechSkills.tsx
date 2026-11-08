@@ -1,7 +1,8 @@
 import { useEffect, useRef } from "react";
-import type { CSSProperties, ReactNode } from "react";
+import type { ReactNode } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import BorderGlow from "./BorderGlow";
 
 import {
   FaReact,
@@ -293,107 +294,99 @@ const TechSkills = () => {
         className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6"
       >
         {categories.map((category) => (
-          <article
+          <BorderGlow
             key={category.id}
-            style={
-              {
-                "--accent": category.accent,
-              } as CSSProperties
-            }
-            className="tech-skill-card group relative isolate overflow-hidden rounded-2xl border border-white/[0.08] bg-[#101014] p-5 transition-all duration-500 ease-out hover:-translate-y-1.5 hover:border-orange-500/30 hover:shadow-[0_20px_60px_-25px_rgba(255,107,0,0.2)] sm:p-7"
+            className="tech-skill-card group transition-all duration-500 ease-out hover:-translate-y-1.5"
+            backgroundColor="#101014"
+            borderRadius={20}
+            glowColor={category.accent}
+            colors={[category.accent, "#FF6B00", "#FF8C42"]}
+            glowRadius={35}
+            glowIntensity={1.15}
+            edgeSensitivity={20}
+            coneSpread={30}
           >
-            {/* Top accent line */}
-            <div
-              className="absolute inset-x-0 top-0 h-px opacity-40 transition-opacity duration-500 group-hover:opacity-100"
-              style={{
-                background: `linear-gradient(90deg, transparent, ${category.accent}, transparent)`,
-              }}
-            />
+            <div className="p-5 sm:p-7 flex flex-col h-full justify-between">
+              <div>
+                {/* Card Header */}
+                <div className="mb-8 flex items-center gap-4">
+                  {/* Category Icon */}
+                  <div
+                    className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border text-2xl transition-all duration-500 group-hover:rotate-6 group-hover:scale-110"
+                    style={{
+                      color: category.accent,
+                      borderColor: `${category.accent}30`,
+                      backgroundColor: `${category.accent}12`,
+                    }}
+                  >
+                    {category.icon}
+                  </div>
 
-            {/* Hover background glow */}
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute -right-20 -top-20 -z-10 h-52 w-52 rounded-full opacity-0 blur-[90px] transition-opacity duration-700 group-hover:opacity-20"
-              style={{ backgroundColor: category.accent }}
-            />
+                  {/* Category Details */}
+                  <div className="min-w-0 flex-1">
+                    <div className="mb-1 flex items-center gap-2">
+                      <span className="font-mono text-[10px] font-semibold tracking-widest text-orange-500/70">
+                        / {category.number}
+                      </span>
 
-            {/* Card Header */}
-            <div className="mb-8 flex items-center gap-4">
-              {/* Category Icon */}
-              <div
-                className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border text-2xl transition-all duration-500 group-hover:rotate-6 group-hover:scale-110"
-                style={{
-                  color: category.accent,
-                  borderColor: `${category.accent}30`,
-                  backgroundColor: `${category.accent}12`,
-                }}
-              >
-                {category.icon}
-              </div>
+                      <span className="h-px w-5 bg-white/15" />
+                    </div>
 
-              {/* Category Details */}
-              <div className="min-w-0 flex-1">
-                <div className="mb-1 flex items-center gap-2">
-                  <span className="font-mono text-[10px] font-semibold tracking-widest text-orange-500/70">
-                    / {category.number}
-                  </span>
+                    <h3 className="text-base font-bold tracking-tight text-white sm:text-lg">
+                      {category.title}
+                    </h3>
 
-                  <span className="h-px w-5 bg-white/15" />
+                    <p className="mt-1 text-xs leading-relaxed text-white/40 sm:text-sm">
+                      {category.caption}
+                    </p>
+                  </div>
+
+                  {/* Skill Count */}
+                  <div className="flex h-10 w-10 shrink-0 flex-col items-center justify-center rounded-xl border border-white/[0.07] bg-white/[0.025]">
+                    <span className="font-mono text-sm font-semibold text-white/70">
+                      {String(category.skills.length).padStart(2, "0")}
+                    </span>
+                    <span className="text-[7px] uppercase tracking-wider text-white/30">
+                      Skills
+                    </span>
+                  </div>
                 </div>
 
-                <h3 className="text-base font-bold tracking-tight text-white sm:text-lg">
-                  {category.title}
-                </h3>
+                {/* Divider */}
+                <div className="mb-5 h-px w-full bg-gradient-to-r from-white/[0.1] via-white/[0.05] to-transparent" />
 
-                <p className="mt-1 text-xs leading-relaxed text-white/40 sm:text-sm">
-                  {category.caption}
-                </p>
+                {/* Skills */}
+                <ul className="flex flex-wrap gap-2.5">
+                  {category.skills.map((skill) => (
+                    <li
+                      key={skill.name}
+                      className="skill-chip-item group/chip inline-flex cursor-default items-center gap-2 rounded-lg border border-white/[0.07] bg-white/[0.025] px-3 py-2.5 text-xs font-medium text-white/60 transition-all duration-300 hover:-translate-y-0.5 hover:border-orange-500/30 hover:bg-orange-500/[0.08] hover:text-orange-300 sm:text-sm"
+                    >
+                      {skill.icon && (
+                        <span className="text-sm text-white/40 transition-colors duration-300 group-hover/chip:text-orange-400">
+                          {skill.icon}
+                        </span>
+                      )}
+
+                      <span>{skill.name}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
 
-              {/* Skill Count */}
-              <div className="flex h-10 w-10 shrink-0 flex-col items-center justify-center rounded-xl border border-white/[0.07] bg-white/[0.025]">
-                <span className="font-mono text-sm font-semibold text-white/70">
-                  {String(category.skills.length).padStart(2, "0")}
+              {/* Bottom card detail */}
+              <div className="mt-7 flex items-center justify-between">
+                <span className="text-[9px] font-medium uppercase tracking-[0.2em] text-white/20">
+                  Technology Stack
                 </span>
-                <span className="text-[7px] uppercase tracking-wider text-white/30">
-                  Skills
-                </span>
+
+                <span
+                  className="h-1.5 w-1.5 rounded-full opacity-40 transition-all duration-300 group-hover:scale-150 group-hover:opacity-100"
+                  style={{ backgroundColor: category.accent }}
+                />
               </div>
             </div>
-
-            {/* Divider */}
-            <div className="mb-5 h-px w-full bg-gradient-to-r from-white/[0.1] via-white/[0.05] to-transparent" />
-
-            {/* Skills */}
-            <ul className="flex flex-wrap gap-2.5">
-              {category.skills.map((skill) => (
-                <li
-                  key={skill.name}
-                  className="skill-chip-item group/chip inline-flex cursor-default items-center gap-2 rounded-lg border border-white/[0.07] bg-white/[0.025] px-3 py-2.5 text-xs font-medium text-white/60 transition-all duration-300 hover:-translate-y-0.5 hover:border-orange-500/30 hover:bg-orange-500/[0.08] hover:text-orange-300 sm:text-sm"
-                >
-                  {skill.icon && (
-                    <span className="text-sm text-white/40 transition-colors duration-300 group-hover/chip:text-orange-400">
-                      {skill.icon}
-                    </span>
-                  )}
-
-                  <span>{skill.name}</span>
-                </li>
-              ))}
-            </ul>
-
-            {/* Bottom card detail */}
-            <div className="mt-7 flex items-center justify-between">
-              <span className="text-[9px] font-medium uppercase tracking-[0.2em] text-white/20">
-                Technology Stack
-              </span>
-
-              <span
-                className="h-1.5 w-1.5 rounded-full opacity-40 transition-all duration-300 group-hover:scale-150 group-hover:opacity-100"
-                style={{ backgroundColor: category.accent }}
-              />
-            </div>
-          </article>
+          </BorderGlow>
         ))}
       </div>
     </section>
