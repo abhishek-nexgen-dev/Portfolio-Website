@@ -105,8 +105,8 @@ export function setCharTimeline(
       tl2
         .fromTo(
           ".what-box-in",
-          { display: "none" },
-          { display: "flex", duration: 0.1, delay: 6 },
+          { opacity: 0.2 },
+          { opacity: 1, duration: 0.5, delay: 5 },
           0
         );
       if (monitor) {
@@ -135,16 +135,14 @@ export function setCharTimeline(
         .to(character.rotation, { x: -0.04, duration: 2, delay: 1 }, 0);
     }
   } else {
-    if (character) {
-      const tM2 = gsap.timeline({
-        scrollTrigger: {
-          trigger: ".what-box-in",
-          start: "top 70%",
-          end: "bottom top",
-        },
-      });
-      tM2.to(".what-box-in", { display: "flex", duration: 0.1, delay: 0 }, 0);
-    }
+    const tM2 = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".what-box-in",
+        start: "top 75%",
+        end: "bottom top",
+      },
+    });
+    tM2.fromTo(".what-box-in", { opacity: 0.3 }, { opacity: 1, duration: 0.5 }, 0);
   }
 }
 

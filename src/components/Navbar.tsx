@@ -137,33 +137,57 @@ const Navbar = () => {
               </a>
             </li>
           ))}
+          <li className="pt-2 lg:hidden">
+            <button
+              type="button"
+              onClick={() => {
+                setMobileOpen(false);
+                setIsRecruiterOpen(true);
+              }}
+              className="w-full text-center py-2.5 rounded-xl bg-gradient-to-r from-[#FF6B00] to-[#CC5200] text-white text-xs font-bold tracking-wider uppercase transition-all shadow-[0_2px_10px_rgba(255,107,0,0.3)] cursor-pointer"
+            >
+              Recruiter Brief & Resume
+            </button>
+          </li>
         </ul>
 
-        {/* Hamburger — mobile/tablet only */}
-        <button
-          type="button"
-          aria-label="Toggle navigation menu"
-          aria-expanded={mobileOpen}
-          aria-controls="site-header"
-          onClick={() => setMobileOpen((v) => !v)}
-          className="inline-flex h-11 w-11 shrink-0 cursor-pointer flex-col justify-center gap-[5px] rounded-[10px] border border-white/15 bg-white/5 p-[10px] backdrop-blur-md transition-colors hover:border-[#FF6B00] lg:hidden"
-        >
-          <span
-            className={`block h-[2px] w-full rounded bg-white transition-transform duration-300 ${
-              mobileOpen ? 'translate-y-[7px] rotate-45' : ''
-            }`}
-          />
-          <span
-            className={`block h-[2px] w-full rounded bg-white transition-opacity duration-300 ${
-              mobileOpen ? 'opacity-0' : 'opacity-100'
-            }`}
-          />
-          <span
-            className={`block h-[2px] w-full rounded bg-white transition-transform duration-300 ${
-              mobileOpen ? '-translate-y-[7px] -rotate-45' : ''
-            }`}
-          />
-        </button>
+        {/* Action Zone: Primary CTA + Mobile Hamburger */}
+        <div className="flex items-center gap-3 shrink-0">
+          <button
+            type="button"
+            onClick={() => setIsRecruiterOpen(true)}
+            className="hidden sm:inline-flex items-center gap-1.5 rounded-full border border-[#FF6B00]/40 bg-[#FF6B00]/15 px-4 py-1.5 text-xs font-semibold tracking-wider text-[#FFB380] transition-all hover:bg-[#FF6B00] hover:text-white hover:border-[#FF6B00] hover:shadow-[0_0_16px_rgba(255,107,0,0.4)] cursor-pointer whitespace-nowrap"
+            title="View Recruiter Executive Brief & Resume"
+          >
+            <span>Recruiter Brief</span>
+          </button>
+
+          {/* Hamburger — mobile/tablet only */}
+          <button
+            type="button"
+            aria-label="Toggle navigation menu"
+            aria-expanded={mobileOpen}
+            aria-controls="site-header"
+            onClick={() => setMobileOpen((v) => !v)}
+            className="inline-flex h-11 w-11 shrink-0 cursor-pointer flex-col justify-center gap-[5px] rounded-[10px] border border-white/15 bg-white/5 p-[10px] backdrop-blur-md transition-colors hover:border-[#FF6B00] lg:hidden"
+          >
+            <span
+              className={`block h-[2px] w-full rounded bg-white transition-transform duration-300 ${
+                mobileOpen ? 'translate-y-[7px] rotate-45' : ''
+              }`}
+            />
+            <span
+              className={`block h-[2px] w-full rounded bg-white transition-opacity duration-300 ${
+                mobileOpen ? 'opacity-0' : 'opacity-100'
+              }`}
+            />
+            <span
+              className={`block h-[2px] w-full rounded bg-white transition-transform duration-300 ${
+                mobileOpen ? '-translate-y-[7px] -rotate-45' : ''
+              }`}
+            />
+          </button>
+        </div>
       </header>
 
       {/* Ambient fixed layers — styled in Landing.css */}

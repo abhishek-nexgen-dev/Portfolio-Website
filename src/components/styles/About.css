@@ -49,11 +49,11 @@
 }
 
 .about-philosophy-card {
-  margin-top: 10px;
+  margin-top: 14px;
   padding: 16px 20px;
   background: rgba(255, 107, 0, 0.05);
-  border-left: 3px solid var(--accentColor);
-  border-radius: 0 10px 10px 0;
+  border: 1px solid rgba(255, 107, 0, 0.25);
+  border-radius: 12px;
 }
 
 .philosophy-label {
@@ -102,16 +102,16 @@
     width: 52%;
   }
   .about-me p.para {
-    font-size: 1.6vw;
-    line-height: 2.1vw;
+    font-size: clamp(20px, 1.6vw, 30px);
+    line-height: clamp(28px, 2.1vw, 38px);
   }
   .about-subtext {
-    font-size: 0.95vw !important;
-    line-height: 1.5vw !important;
+    font-size: clamp(14px, 0.95vw, 16.5px) !important;
+    line-height: clamp(22px, 1.5vw, 26px) !important;
   }
   .about-philosophy-card blockquote {
-    font-size: 0.9vw;
-    line-height: 1.4vw;
+    font-size: clamp(13px, 0.9vw, 15px);
+    line-height: clamp(20px, 1.4vw, 23px);
   }
 }
 @media only screen and (min-width: 1950px) {

@@ -80,10 +80,10 @@ const Contact = () => {
             <h4>Direct Reach</h4>
             <p>
               <a
-                href="mailto:abhishekg6889@gmail.com"
+                href="mailto:abhishek.nexgen.dev@gmail.com"
                 className="contact-email-link"
               >
-                <FaEnvelope /> abhishekg6889@gmail.com
+                <FaEnvelope /> abhishek.nexgen.dev@gmail.com
               </a>
             </p>
             <h4>Location</h4>
@@ -134,7 +134,7 @@ const Contact = () => {
               Designed & Engineered <br /> by <span>Abhishek Kumar Gupta</span>
             </h2>
             <h5>
-              <MdCopyright /> 2025 Abhishek Kumar Gupta · All Rights Reserved
+              <MdCopyright /> {new Date().getFullYear()} Abhishek Kumar Gupta · All Rights Reserved
             </h5>
           </div>
         </div>

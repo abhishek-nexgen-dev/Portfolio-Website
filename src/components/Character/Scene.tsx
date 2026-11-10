@@ -123,7 +123,7 @@ const Scene = () => {
       let animationId: number;
       const animate = () => {
         animationId = requestAnimationFrame(animate);
-        if (!isVisible) return;
+        if (!isVisible || document.hidden) return;
         if (headBone) {
           handleHeadRotation(
             headBone,

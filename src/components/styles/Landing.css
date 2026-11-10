@@ -4,6 +4,7 @@
   margin: auto;
   position: relative;
   height: var(--vh);
+  min-height: 620px;
 }
 .landing-container {
   width: var(--cWidth);

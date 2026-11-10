@@ -101,9 +101,9 @@ const BeyondTheCode = () => {
           blurToFocus
           revealOnScroll
           hoverEffect="lift"
-          captions="none"
+          captions="hover"
           parallax={0.3}
-          lightbox={false}
+          lightbox={true}
           draggable={false}
         />
       </div>

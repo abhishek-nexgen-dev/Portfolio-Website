@@ -1,0 +1,180 @@
+%PDF-1.4
+1 0 obj
+<</Type /Catalog /Pages 2 0 R>>
+endobj
+2 0 obj
+<</Type /Pages /Kids [3 0 R] /Count 1>>
+endobj
+3 0 obj
+<</Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R /F2 6 0 R >> >> >>
+endobj
+4 0 obj
+<</Length 7431>>
+stream
+1.000 0.420 0.000 rg
+0.00 786.00 612.00 6.00 re f
+0.080 0.080 0.100 rg
+/F2 22 Tf
+BT 40.00 750.00 Td (ABHISHEK KUMAR GUPTA) Tj ET
+1.000 0.420 0.000 rg
+/F2 10.5 Tf
+BT 40.00 735.00 Td (FULL-STACK DEVELOPER & AI SYSTEMS ENGINEER) Tj ET
+0.350 0.350 0.400 rg
+/F1 8.5 Tf
+BT 40.00 720.00 Td (abhishek.nexgen.dev@gmail.com  |  +91 \(India\)  |  Jharkhand, India  |  github.com/AbhishekNexGenDev  |  linkedin.com/in/abhisheknexgendev) Tj ET
+0.850 0.850 0.880 RG
+0.75 w 40.00 710.00 m 572.00 710.00 l S
+1.000 0.420 0.000 rg
+/F2 10 Tf
+BT 40.00 696.00 Td (PROFESSIONAL SUMMARY) Tj ET
+1.000 0.420 0.000 RG
+0.60 w 40.00 692.00 m 572.00 692.00 l S
+0.200 0.200 0.220 rg
+/F1 8.5 Tf
+BT 40.00 680.00 Td (Engineering-focused Full-Stack Developer specializing in resilient web platforms, scalable backend architectures,) Tj ET
+BT 40.00 669.00 Td (and intelligent multi-agent AI systems. Proven contributor to GDG Ranchi and open-source initiatives, skilled in) Tj ET
+BT 40.00 658.00 Td (designing RESTful APIs, real-time WebSocket pipelines, and LLM orchestration \(LangChain, LangGraph, Gemini\).) Tj ET
+1.000 0.420 0.000 rg
+/F2 10 Tf
+BT 40.00 646.00 Td (TECHNICAL COMPETENCIES) Tj ET
+1.000 0.420 0.000 RG
+0.60 w 40.00 642.00 m 572.00 642.00 l S
+0.100 0.100 0.120 rg
+/F2 8.5 Tf
+BT 40.00 630.00 Td (Languages & Runtimes:) Tj ET
+0.250 0.250 0.280 rg
+/F1 8.5 Tf
+BT 150.00 630.00 Td (TypeScript, JavaScript \(ES6+\), Python, Node.js, SQL, HTML5, CSS3) Tj ET
+0.100 0.100 0.120 rg
+/F2 8.5 Tf
+BT 40.00 618.00 Td (Backend & Real-Time:) Tj ET
+0.250 0.250 0.280 rg
+/F1 8.5 Tf
+BT 150.00 618.00 Td (Express.js, FastAPI, RESTful APIs, WebSockets \(Socket.IO\), JWT, Webhooks, Microservices) Tj ET
+0.100 0.100 0.120 rg
+/F2 8.5 Tf
+BT 40.00 606.00 Td (Frontend & UI:) Tj ET
+0.250 0.250 0.280 rg
+/F1 8.5 Tf
+BT 150.00 606.00 Td (React.js, Next.js, Tailwind CSS, Redux Toolkit, GSAP, Responsive Design, Vite) Tj ET
+0.100 0.100 0.120 rg
+/F2 8.5 Tf
+BT 40.00 594.00 Td (Databases & Cloud:) Tj ET
+0.250 0.250 0.280 rg
+/F1 8.5 Tf
+BT 150.00 594.00 Td (PostgreSQL, MongoDB, Redis \(Pub/Sub & Caching\), Docker, RabbitMQ, Cloudflare Edge CDN) Tj ET
+0.100 0.100 0.120 rg
+/F2 8.5 Tf
+BT 40.00 582.00 Td (AI & Agentic Systems:) Tj ET
+0.250 0.250 0.280 rg
+/F1 8.5 Tf
+BT 150.00 582.00 Td (LangChain, LangGraph \(Stateful DAGs\), Google Gemini 2.5 API, Qdrant Vector DB, RAG Pipelines) Tj ET
+0.100 0.100 0.120 rg
+/F2 8.5 Tf
+BT 40.00 570.00 Td (Tools & Workflows:) Tj ET
+0.250 0.250 0.280 rg
+/F1 8.5 Tf
+BT 150.00 570.00 Td (Git, GitHub, Postman, Linux Environment, npm, Vite, CI/CD Fundamentals) Tj ET
+1.000 0.420 0.000 rg
+/F2 10 Tf
+BT 40.00 554.00 Td (EXPERIENCE & COMMUNITY LEADERSHIP) Tj ET
+1.000 0.420 0.000 RG
+0.60 w 40.00 550.00 m 572.00 550.00 l S
+0.100 0.100 0.120 rg
+/F2 9.5 Tf
+BT 40.00 538.00 Td (Core Tech Team Member  |  Google Developer Group \(GDG\) Ranchi) Tj ET
+0.400 0.400 0.450 rg
+/F1 8.5 Tf
+BT 460.00 538.00 Td (2024 - Present) Tj ET
+0.250 0.250 0.280 rg
+BT 48.00 526.00 Td (- Engineered software platforms for community tech events, including the official DevFest Ranchi portal handling 5,000+ requests.) Tj ET
+BT 48.00 515.00 Td (- Implemented message queue buffering with RabbitMQ to handle ticket checkout concurrency spikes with zero service drops.) Tj ET
+BT 48.00 504.00 Td (- Led technical developer workshops and hands-on activities focusing on Gemini CLI, API workflows, and modern web frameworks.) Tj ET
+BT 48.00 493.00 Td (- Collaborated across cross-functional organizing teams to coordinate hackathons, speaker platforms, and attendee verification.) Tj ET
+0.100 0.100 0.120 rg
+/F2 9.5 Tf
+BT 40.00 479.00 Td (Open Source Contributor  |  GirlScript Summer of Code \(GSSoC\)) Tj ET
+0.400 0.400 0.450 rg
+/F1 8.5 Tf
+BT 495.00 479.00 Td (2024) Tj ET
+0.250 0.250 0.280 rg
+BT 48.00 467.00 Td (- Collaborated on active production open-source repositories; identified edge-case bugs, proposed solutions, and submitted clean PRs.) Tj ET
+BT 48.00 456.00 Td (- Strengthened practical knowledge of Git branching workflows, test coverage verification, and peer code review protocols.) Tj ET
+1.000 0.420 0.000 rg
+/F2 10 Tf
+BT 40.00 441.00 Td (FEATURED ENGINEERING PROJECTS) Tj ET
+1.000 0.420 0.000 RG
+0.60 w 40.00 437.00 m 572.00 437.00 l S
+0.100 0.100 0.120 rg
+/F2 9 Tf
+BT 40.00 425.00 Td (CIITM Student Management System  |  MERN, Socket.IO, Redis, Razorpay Gateway) Tj ET
+0.350 0.350 0.400 rg
+/F1 8 Tf
+BT 48.00 414.00 Td (Role-based academic management platform serving students, faculty, and administrators.) Tj ET
+0.250 0.250 0.280 rg
+BT 52.00 404.00 Td (- Engineered REST APIs with Express.js and modular MVC structure; enforced strict Role-Based Access Control \(RBAC\).) Tj ET
+BT 52.00 394.00 Td (- Integrated Razorpay Payment Gateway with cryptographically verified HMAC SHA256 webhooks for atomic fee reconciliation.) Tj ET
+BT 52.00 384.00 Td (- Built room-partitioned bidirectional real-time notifications via Socket.IO, reducing broadcast overhead by 70%.) Tj ET
+0.100 0.100 0.120 rg
+/F2 9 Tf
+BT 40.00 371.00 Td (NEXORA Autonomous Multi-Agent AI  |  React, Python, FastAPI, LangGraph, Qdrant) Tj ET
+0.350 0.350 0.400 rg
+/F1 8 Tf
+BT 48.00 360.00 Td (Stateful multi-agent swarm platform orchestrating autonomous decomposition of long-horizon software engineering tasks.) Tj ET
+0.250 0.250 0.280 rg
+BT 52.00 350.00 Td (- Architected core agent supervisor engine utilizing LangGraph directed acyclic graph \(DAG\) state machines.) Tj ET
+BT 52.00 340.00 Td (- Integrated Qdrant vector database for semantic memory retrieval across long sessions; enforced Pydantic schemas for safe execution.) Tj ET
+BT 52.00 330.00 Td (- Constructed real-time WebSocket DAG visualizer in React tracking thought loops, verification steps, and artifacts.) Tj ET
+0.100 0.100 0.120 rg
+/F2 9 Tf
+BT 40.00 317.00 Td (Tolkify Real-Time Messaging Platform  |  React, TypeScript, Node.js, Socket.IO, Redis) Tj ET
+0.350 0.350 0.400 rg
+/F1 8 Tf
+BT 48.00 306.00 Td (Distributed real-time communication platform engineered for sub-second delivery latency and zero perceptual delay.) Tj ET
+0.250 0.250 0.280 rg
+BT 52.00 296.00 Td (- Designed typed WebSocket event handlers across server and client with optimistic state updates in Zustand.) Tj ET
+BT 52.00 286.00 Td (- Integrated @socket.io/redis-adapter allowing horizontal clustering across multiple Node.js instances with zero message loss.) Tj ET
+0.100 0.100 0.120 rg
+/F2 9 Tf
+BT 40.00 273.00 Td (AI Movie Recommender  |  React, Vite, Google Gemini 2.5 Flash, TMDB API) Tj ET
+0.350 0.350 0.400 rg
+/F1 8 Tf
+BT 48.00 262.00 Td (Intelligent movie discovery engine utilizing Gemini 2.5 structured JSON output mode to map subjective prompts to cinema catalog.) Tj ET
+0.250 0.250 0.280 rg
+BT 52.00 252.00 Td (- Crafted few-shot prompt contracts and parallelized TMDB enrichment with Promise.allSettled, cutting latency by 60%.) Tj ET
+1.000 0.420 0.000 rg
+/F2 10 Tf
+BT 40.00 239.00 Td (EDUCATION) Tj ET
+1.000 0.420 0.000 RG
+0.60 w 40.00 235.00 m 572.00 235.00 l S
+0.100 0.100 0.120 rg
+/F2 9.5 Tf
+BT 40.00 223.00 Td (Bachelor of Computer Applications \(BCA\)) Tj ET
+0.400 0.400 0.450 rg
+/F1 8.5 Tf
+BT 450.00 223.00 Td (2024 - 2027 \(Expected\)) Tj ET
+0.250 0.250 0.280 rg
+BT 48.00 211.00 Td (Chhotanagpur Institute of Information Technology & Management \(CIITM\) Dhanbad  |  MCNU Bhopal) Tj ET
+BT 48.00 200.00 Td (Coursework: Data Structures & Algorithms, Object-Oriented Programming, Database Systems, Web Engineering, Software Architecture.) Tj ET
+endstream
+endobj
+5 0 obj
+<</Type /Font /Subtype /Type1 /BaseFont /Helvetica>>
+endobj
+6 0 obj
+<</Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold>>
+endobj
+xref
+0 7
+0000000000 65535 f 
+0000000009 00000 n 
+0000000056 00000 n 
+0000000111 00000 n 
+0000000246 00000 n 
+0000007727 00000 n 
+0000007795 00000 n 
+trailer
+<</Size 7 /Root 1 0 R>>
+startxref
+7868
+%%EOF

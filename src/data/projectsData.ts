@@ -31,8 +31,7 @@ export const projectsData: ProjectItem[] = [
     featured: true,
     summary:
       "A student management platform featuring role-based access control, payment integration, and real-time administrative dashboards.",
-    image:
-      "https://images.openai.com/static-rsc-4/IQeVij682nxhZtet-pWYhEMy7C8NhM6ql26CGZAEzwOvvE6BLW2ziY_dHZZacHIFNn8yb9scTTUpIPPGe8N5HDmX1oPIxvcZe_bkAWq9aYC22EkFpPZZbRYmxCVagCdqOqSa5EO-xC5wKHPkAxD3hEmQmSMzCTTn5h1zH-CAu2A?purpose=inline",
+    image: "/src/assets/images/ciitm_student_management_1794323857120.jpg",
     githubUrl: "https://github.com/AbhishekNexGenDev",
     liveUrl: "https://github.com/AbhishekNexGenDev",
     caseStudy: {
@@ -101,8 +100,7 @@ export const projectsData: ProjectItem[] = [
     featured: true,
     summary:
       "An AI orchestration platform designed around multi-agent workflows, intelligent task execution, and coordinated AI systems.",
-    image:
-      "https://images.openai.com/static-rsc-4/4DZ2TbL0Nn3ReiRFbSrgtWaKNb79E-Wtea_l_IbA98h_YjKhlfy1O5fRKZ0MwTqrWc0Ssb4OT2RTyUullg7rpaqSLtMyFKGS6r5OE-BRGpKpjzEjY-oKw75P4smxDa53l7Ntvakkw70gk-XUeSS5vh0q7EP1AW94YqG4xI5PKf0?purpose=inline",
+    image: "/src/assets/images/nexora_multi_agent_ai_1794323857999.jpg",
     githubUrl: "https://github.com/AbhishekNexGenDev",
     liveUrl: "https://github.com/AbhishekNexGenDev",
     caseStudy: {
@@ -171,8 +169,7 @@ export const projectsData: ProjectItem[] = [
     tools: "MERN · Socket.IO · TypeScript · Redis",
     summary:
       "A real-time communication application focused on interactive messaging and seamless user communication.",
-    image:
-      "https://images.openai.com/static-rsc-4/p_nzRGnnzhe7JQTAWse5wJlQyl5m1OnBu3Sk82pWczIZCJmGsGSw824CWYPSb4d3yWGaTf29pDoVFosNAsiGiRHaUrZfsd3CUXUR0dh3P3f-7WZV7KRSOBZgQBC2AnSYrrxjaU-TVQpp_yACPmQjO1ddYTCdznvV_aJBzLEqVAk?purpose=inline",
+    image: "/src/assets/images/tolkify_realtime_chat_1794323858567.jpg",
     githubUrl: "https://github.com/AbhishekNexGenDev",
     liveUrl: "https://github.com/AbhishekNexGenDev",
     caseStudy: {
@@ -236,8 +233,7 @@ export const projectsData: ProjectItem[] = [
     tools: "React · Gemini 2.5 · AI APIs · TMDB",
     summary:
       "An AI-powered movie recommendation experience that uses Gemini to generate intelligent recommendations.",
-    image:
-      "https://images.openai.com/static-rsc-4/KgAC5Qb6zTgt9O4ZflX3cS3Wja5hYr0dWH3EmGQQxVv0dSLNo6kQpxl76B-iuuIEEOcxNsmSlspS7t16XZtgtRxiPQpzFuWZlcH7PG-s2ZTovUtQ8--oe_gSu9pfp8qmttgsYUBN7G7aGg7TefzRplqdeMADo-2DZF5vmrsvPwk?purpose=inline",
+    image: "/src/assets/images/ai_movie_recommender_1794323860780.jpg",
     githubUrl: "https://github.com/AbhishekNexGenDev",
     liveUrl: "https://github.com/AbhishekNexGenDev",
     caseStudy: {
@@ -302,8 +298,7 @@ export const projectsData: ProjectItem[] = [
     tools: "React · Node.js · APIs · RabbitMQ · Cloudflare",
     summary:
       "Built software for developer community events, including event platforms, permission-based backend systems, and registration workflows.",
-    image:
-      "https://images.openai.com/static-rsc-4/gOFAltoRCdiCI6yltBAwGXPH5NIwgZkQIa1eGbNipdcc35QABD1xj4PJZ-Oa35aPJ7nvwHzMy9zaAWtWs6HngEDixOd4vSZf303fA1SdUC9iTJK-JD7vvG7xxdFk5E6ebMtdStP02LO70GB-PjVHgAKflnLTzPz7Sm-Q7PTrCCI?purpose=inline",
+    image: "/src/assets/images/gdg_devfest_ecosystem_1794323859606.jpg",
     githubUrl: "https://github.com/AbhishekNexGenDev",
     liveUrl: "https://github.com/AbhishekNexGenDev",
     caseStudy: {

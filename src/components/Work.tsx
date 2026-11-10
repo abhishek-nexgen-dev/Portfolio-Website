@@ -38,42 +38,71 @@ const Work = () => {
   }, [selectedCategory]);
 
   useEffect(() => {
-    let translateX: number = 0;
+    const mm = gsap.matchMedia();
 
-    function setTranslateX() {
-      const box = document.getElementsByClassName("work-box");
-      if (!box || box.length === 0) return;
-      const workContainer = document.querySelector(".work-container");
-      if (!workContainer || !box[0].parentElement) return;
-      const rectLeft = workContainer.getBoundingClientRect().left;
-      const rect = box[0].getBoundingClientRect();
-      const parentWidth = box[0].parentElement.getBoundingClientRect().width;
-      const padding: number =
-        parseInt(window.getComputedStyle(box[0]).padding) / 2;
-      translateX = rect.width * box.length - (rectLeft + parentWidth) + padding;
-    }
+    mm.add("(min-width: 1025px)", () => {
+      let translateX: number = 0;
 
-    setTranslateX();
+      function setTranslateX() {
+        const box = document.getElementsByClassName("work-box");
+        if (!box || box.length === 0) return;
+        const workContainer = document.querySelector(".work-container");
+        if (!workContainer || !box[0].parentElement) return;
+        const rectLeft = workContainer.getBoundingClientRect().left;
+        const rect = box[0].getBoundingClientRect();
+        const parentWidth = box[0].parentElement.getBoundingClientRect().width;
+        const padding: number =
+          parseInt(window.getComputedStyle(box[0]).padding) / 2;
+        translateX = rect.width * box.length - (rectLeft + parentWidth) + padding;
+      }
 
-    const timeline = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".work-section",
-        start: "top top",
-        end: () => `+=${Math.max(translateX, 500)}`,
-        scrub: true,
-        pin: true,
-        id: "work",
-      },
+      setTranslateX();
+
+      const timeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".work-section",
+          start: "top top",
+          end: () => `+=${Math.max(translateX, 500)}`,
+          scrub: true,
+          pin: true,
+          id: "work-desktop",
+        },
+      });
+
+      timeline.to(".work-flex", {
+        x: () => -translateX,
+        ease: "none",
+      });
+
+      return () => {
+        timeline.kill();
+      };
     });
 
-    timeline.to(".work-flex", {
-      x: () => -translateX,
-      ease: "none",
+    mm.add("(max-width: 1024px)", () => {
+      const boxes = gsap.utils.toArray<HTMLElement>(".work-box");
+      if (boxes.length > 0) {
+        gsap.fromTo(
+          boxes,
+          { opacity: 0, y: 30 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+            stagger: 0.12,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: ".work-flex",
+              start: "top 85%",
+              toggleActions: "play none none reverse",
+            },
+          }
+        );
+      }
     });
 
     return () => {
-      timeline.kill();
-      ScrollTrigger.getById("work")?.kill();
+      mm.revert();
     };
   }, [filteredProjects]);
 

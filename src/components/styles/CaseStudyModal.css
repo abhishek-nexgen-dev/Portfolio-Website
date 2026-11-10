@@ -401,3 +401,30 @@
   }
 }
 
+@media only screen and (max-width: 480px) {
+  .case-study-overlay {
+    padding: 8px;
+  }
+  .case-study-modal {
+    padding: 20px 14px;
+    border-radius: 14px;
+  }
+  .modal-title {
+    font-size: 20px;
+    line-height: 26px;
+  }
+  .modal-close-btn {
+    top: 12px;
+    right: 12px;
+    width: 32px;
+    height: 32px;
+  }
+  .modal-links {
+    flex-direction: column;
+  }
+  .modal-link-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+

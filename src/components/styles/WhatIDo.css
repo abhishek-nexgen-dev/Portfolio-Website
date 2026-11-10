@@ -37,7 +37,7 @@
   height: 560px;
   margin-left: 180px;
   position: relative;
-  display: none;
+  display: flex;
 }
 .what-content {
   width: 470px;

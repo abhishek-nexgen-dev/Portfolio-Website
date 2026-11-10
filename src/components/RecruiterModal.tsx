@@ -35,7 +35,7 @@ const RecruiterModal = ({ isOpen, onClose }: Props) => {
   if (!isOpen) return null;
 
   const copyEmail = () => {
-    navigator.clipboard.writeText("abhishekg6889@gmail.com");
+    navigator.clipboard.writeText("abhishek.nexgen.dev@gmail.com");
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -179,8 +179,8 @@ const RecruiterModal = ({ isOpen, onClose }: Props) => {
         <div className="recruiter-bottom">
           <div className="direct-contact-info">
             <span>Direct Email:</span>
-            <a href="mailto:abhishekg6889@gmail.com">
-              <FaEnvelope /> abhishekg6889@gmail.com
+            <a href="mailto:abhishek.nexgen.dev@gmail.com">
+              <FaEnvelope /> abhishek.nexgen.dev@gmail.com
             </a>
           </div>
           <p className="recruiter-note">

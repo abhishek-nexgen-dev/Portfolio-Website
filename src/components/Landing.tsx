@@ -10,7 +10,7 @@ const Landing = ({ children }: PropsWithChildren) => {
 
   const handleCopyEmail = (e: React.MouseEvent) => {
     e.preventDefault();
-    navigator.clipboard.writeText("abhishekg6889@gmail.com");
+    navigator.clipboard.writeText("abhishek.nexgen.dev@gmail.com");
     setCopiedEmail(true);
     setTimeout(() => setCopiedEmail(false), 2200);
   };

@@ -349,3 +349,30 @@
   }
 }
 
+@media only screen and (max-width: 480px) {
+  .recruiter-overlay {
+    padding: 8px;
+  }
+  .recruiter-modal {
+    padding: 20px 14px;
+    border-radius: 14px;
+  }
+  .recruiter-header h2 {
+    font-size: 20px;
+    line-height: 26px;
+  }
+  .recruiter-actions-bar {
+    flex-direction: column;
+  }
+  .recruiter-action-btn {
+    width: 100%;
+    justify-content: center;
+  }
+  .recruiter-close-btn {
+    top: 12px;
+    right: 12px;
+    width: 32px;
+    height: 32px;
+  }
+}
+
