@@ -31,7 +31,7 @@ export const projectsData: ProjectItem[] = [
     featured: true,
     summary:
       "A student management platform featuring role-based access control, payment integration, and real-time administrative dashboards.",
-    image: "/src/assets/images/ciitm_student_management_1794323857120.jpg",
+    image: "/images/projects/ciitm_student_management_1794323857120.jpg",
     githubUrl: "https://github.com/AbhishekNexGenDev",
     liveUrl: "https://github.com/AbhishekNexGenDev",
     caseStudy: {
@@ -100,7 +100,7 @@ export const projectsData: ProjectItem[] = [
     featured: true,
     summary:
       "An AI orchestration platform designed around multi-agent workflows, intelligent task execution, and coordinated AI systems.",
-    image: "/src/assets/images/nexora_multi_agent_ai_1794323857999.jpg",
+    image: "/images/projects/nexora_multi_agent_ai_1794323857999.jpg",
     githubUrl: "https://github.com/AbhishekNexGenDev",
     liveUrl: "https://github.com/AbhishekNexGenDev",
     caseStudy: {
@@ -169,7 +169,7 @@ export const projectsData: ProjectItem[] = [
     tools: "MERN · Socket.IO · TypeScript · Redis",
     summary:
       "A real-time communication application focused on interactive messaging and seamless user communication.",
-    image: "/src/assets/images/tolkify_realtime_chat_1794323858567.jpg",
+    image: "/images/projects/tolkify_realtime_chat_1794323858567.jpg",
     githubUrl: "https://github.com/AbhishekNexGenDev",
     liveUrl: "https://github.com/AbhishekNexGenDev",
     caseStudy: {
@@ -233,7 +233,7 @@ export const projectsData: ProjectItem[] = [
     tools: "React · Gemini 2.5 · AI APIs · TMDB",
     summary:
       "An AI-powered movie recommendation experience that uses Gemini to generate intelligent recommendations.",
-    image: "/src/assets/images/ai_movie_recommender_1794323860780.jpg",
+    image: "/images/projects/ai_movie_recommender_1794323860780.jpg",
     githubUrl: "https://github.com/AbhishekNexGenDev",
     liveUrl: "https://github.com/AbhishekNexGenDev",
     caseStudy: {
@@ -298,7 +298,7 @@ export const projectsData: ProjectItem[] = [
     tools: "React · Node.js · APIs · RabbitMQ · Cloudflare",
     summary:
       "Built software for developer community events, including event platforms, permission-based backend systems, and registration workflows.",
-    image: "/src/assets/images/gdg_devfest_ecosystem_1794323859606.jpg",
+    image: "/images/projects/gdg_devfest_ecosystem_1794323859606.jpg",
     githubUrl: "https://github.com/AbhishekNexGenDev",
     liveUrl: "https://github.com/AbhishekNexGenDev",
     caseStudy: {
