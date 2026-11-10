@@ -1,4 +1,0 @@
-/* Navbar is now styled with Tailwind utilities in Navbar.tsx.
-   This file is kept empty to avoid breaking imports elsewhere.
-   GSAP target classes (.header, .nav-fade, .landing-circle*) are
-   styled via Landing.css + Tailwind utilities in the component. */

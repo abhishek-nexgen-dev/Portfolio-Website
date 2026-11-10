@@ -44,7 +44,7 @@ const Loading = ({ percent }: { percent: number }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoaded]);
 
-  // Failsafe: force-exit after 3.5s no matter what the 3D progress is.
+  // Failsafe: force-exit if loading completion stalls.
   useEffect(() => {
     const timer = setTimeout(() => dismiss(), 3500);
     return () => clearTimeout(timer);

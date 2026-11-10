@@ -21,12 +21,6 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks(id) {
-          if (id.includes("node_modules/three") || id.includes("three-stdlib")) {
-            return "three-vendor";
-          }
-          if (id.includes("@react-three") || id.includes("three-mesh-bvh") || id.includes("maath")) {
-            return "three-ecosystem";
-          }
           if (id.includes("gsap")) {
             return "gsap-vendor";
           }

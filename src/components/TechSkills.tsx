@@ -125,10 +125,25 @@ const TechSkills = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const headerRef = useRef<HTMLElement>(null);
   const marqueeRef = useRef<HTMLDivElement>(null);
+  const marqueeTweenRef = useRef<gsap.core.Tween | null>(null);
   const cardsContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
     const ctx = gsap.context(() => {
+      // Infinite horizontal marquee (replaces CSS @keyframes skills-marquee)
+      if (!prefersReducedMotion) {
+        marqueeTweenRef.current = gsap.to(".skills-marquee-track", {
+          xPercent: -50,
+          duration: 28,
+          ease: "none",
+          repeat: -1,
+        });
+      }
+
       // Header entrance animation with GSAP ScrollTrigger
       if (headerRef.current) {
         gsap.fromTo(
@@ -211,7 +226,10 @@ const TechSkills = () => {
       }
     }, sectionRef);
 
-    return () => ctx.revert();
+    return () => {
+      marqueeTweenRef.current = null;
+      ctx.revert();
+    };
   }, []);
 
   return (
@@ -270,11 +288,13 @@ const TechSkills = () => {
       <div
         ref={marqueeRef}
         aria-label={`Technologies: ${marqueeSkills.join(", ")}`}
+        onMouseEnter={() => marqueeTweenRef.current?.timeScale(0)}
+        onMouseLeave={() => marqueeTweenRef.current?.timeScale(1)}
         className="relative mb-14 overflow-hidden border-y border-white/[0.06] py-5 sm:mb-16"
       >
         <div
           aria-hidden="true"
-          className="skills-marquee-track flex w-max items-center gap-7 whitespace-nowrap sm:gap-10"
+          className="skills-marquee-track flex w-max items-center gap-7 pr-7 whitespace-nowrap sm:gap-10 sm:pr-10"
         >
           {[...marqueeSkills, ...marqueeSkills].map((skill, index) => (
             <span

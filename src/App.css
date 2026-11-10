@@ -1,7 +1,7 @@
 /* GlowCursor (WebGL trail) — fixed full-viewport BACKGROUND layer.
  * Always the lowest z-index: it shows through the page background
- * and never covers the character or any text. Z-index scale lives
- * in index.css (:root) — see --z-* tokens. */
+ * and never covers any text. Z-index scale lives in index.css (:root)
+ * — see --z-* tokens. */
 .glow-cursor-layer {
   position: fixed;
   inset: 0;
@@ -12,10 +12,9 @@
 /* All page content (sections + hero text) lives inside #smooth-wrapper.
  * ScrollSmoother transforms #smooth-content, making it a stacking
  * context at z-index:auto — so without this, the root-level glow
- * (z-index:1) would paint ABOVE all content despite their higher
- * internal z-indexes (character 11, text 20/21). Putting the whole
- * content wrapper above both the glow (1) and the character (11)
- * guarantees: background glow < character < text, always. */
+ * (z-index:1) would paint ABOVE all content despite higher internal
+ * z-indexes (text 20/21). Putting the whole content wrapper above the
+ * glow (1) guarantees: background glow < text, always. */
 #smooth-wrapper {
   position: relative;
   z-index: var(--z-content);

@@ -58,10 +58,11 @@ const Navbar = () => {
     smoother?.scrollTop(0)
     smoother?.paused(true)
 
-    const links = document.querySelectorAll('.header ul a')
-    links.forEach(elem => {
-      const element = elem as HTMLAnchorElement
-      element.addEventListener('click', e => {
+    const links = Array.from(
+      document.querySelectorAll('.header ul a')
+    ) as HTMLAnchorElement[]
+    const linkHandlers = links.map((element) => {
+      const handler = (e: Event) => {
         setMobileOpen(false)
         if (window.innerWidth > 1024) {
           e.preventDefault()
@@ -69,11 +70,22 @@ const Navbar = () => {
           const section = targetElem.getAttribute('data-href')
           getSmoother()?.scrollTo(section, true, 'top top')
         }
-      })
+      }
+      element.addEventListener('click', handler)
+      return { element, handler }
     })
-    window.addEventListener('resize', () => {
+
+    const onResize = () => {
       ScrollSmoother.refresh(true)
-    })
+    }
+    window.addEventListener('resize', onResize)
+
+    return () => {
+      linkHandlers.forEach(({ element, handler }) => {
+        element.removeEventListener('click', handler)
+      })
+      window.removeEventListener('resize', onResize)
+    }
   }, [])
 
   return (
@@ -106,13 +118,7 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* Center email — desktop only */}
-        <a
-          href="mailto:abhishekg6889@gmail.com"
-          className="navbar-connect absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 whitespace-nowrap text-[15px] font-medium tracking-[1px] min-[1200px]:block"
-        >
-          abhishek.nexgen.dev@gmail.com
-        </a>
+     
 
         {/* Links — inline on desktop, dropdown panel on mobile. No `!important`
             so `lg:flex` correctly overrides the mobile `hidden`. */}
@@ -121,7 +127,7 @@ const Navbar = () => {
             mobileOpen
               ? 'max-lg:flex max-lg:flex-col'
               : 'max-lg:hidden'
-          } order-3 w-full flex-basis-full gap-1 rounded-2xl border border-white/10 bg-black/95 px-3 py-2 lg:order-none lg:w-auto lg:flex-basis-auto lg:border-0 lg:bg-transparent lg:p-0`}
+          } order-3 w-full basis-full gap-1 rounded-2xl border border-white/10 bg-black/95 px-3 py-2 lg:order-none lg:w-auto lg:basis-auto lg:border-0 lg:bg-transparent lg:p-0`}
         >
           {NAV_LINKS.map((link) => (
             <li
@@ -190,10 +196,19 @@ const Navbar = () => {
         </div>
       </header>
 
-      {/* Ambient fixed layers — styled in Landing.css */}
-      <div className="landing-circle1 pointer-events-none" aria-hidden="true" />
-      <div className="landing-circle2 pointer-events-none" aria-hidden="true" />
-      <div className="nav-fade pointer-events-none" aria-hidden="true" />
+      {/* Ambient fixed layers */}
+      <div
+        className="landing-circle1 pointer-events-none fixed left-0 top-0 z-[var(--z-ambient)] h-[300px] w-[300px] rounded-full bg-[#FF6B00] blur-[60px] shadow-[inset_-50px_40px_50px_rgba(255,107,0,0.6)] animate-[loadingCircle_5s_linear_infinite]"
+        aria-hidden="true"
+      />
+      <div
+        className="landing-circle2 pointer-events-none fixed right-0 top-1/2 z-[var(--z-ambient)] hidden h-[300px] w-[300px] translate-x-[calc(100%-2px)] -translate-y-1/2 rounded-full bg-[#FF6B00] blur-[50px] shadow-[inset_-50px_40px_50px_rgba(255,107,0,0.6)] animate-[loadingCircle2_5s_linear_infinite]"
+        aria-hidden="true"
+      />
+      <div
+        className="nav-fade pointer-events-none fixed left-0 top-0 z-[var(--z-nav-fade)] h-[130px] w-full opacity-0 bg-[linear-gradient(0deg,transparent,var(--backgroundColor)_70%)]"
+        aria-hidden="true"
+      />
 
       <RecruiterModal
         isOpen={isRecruiterOpen}

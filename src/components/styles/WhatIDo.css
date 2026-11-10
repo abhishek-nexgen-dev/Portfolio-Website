@@ -22,7 +22,7 @@
   font-size: calc(4vw + 25px);
   line-height: calc(4vw + 20px);
   font-weight: 600;
-  margin-right: 10%;
+  margin-right: 0;
   margin-bottom: 100px;
 }
 
@@ -35,7 +35,7 @@
 .what-box-in {
   flex-direction: column;
   height: 560px;
-  margin-left: 180px;
+  margin-left: 0;
   position: relative;
   display: flex;
 }
@@ -239,15 +239,7 @@
   border: 1px solid #ffffff50;
   border-radius: 30px;
 }
-@media only screen and (max-width: 1600px) {
-  .what-box h2 {
-    margin-right: 18%;
-  }
-}
 @media only screen and (max-width: 1400px) {
-  .what-box h2 {
-    margin-right: 20%;
-  }
   .what-box-in {
     height: 400px;
   }
@@ -276,9 +268,6 @@
   }
 }
 @media only screen and (max-width: 1400px) {
-  .what-box-in {
-    margin-left: 50px;
-  }
   .what-content {
     width: 380px;
   }
@@ -291,11 +280,11 @@
   }
   .what-box-in {
     height: 500px;
-    margin-left: -50px;
+    margin-left: 0;
   }
   .what-content {
-    padding: 50px;
-    width: 500px;
+    padding: 36px;
+    width: 420px;
   }
   .what-content p {
     font-size: 14px;
