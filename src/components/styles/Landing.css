@@ -131,18 +131,9 @@
   transform: translateX(-50%);
   z-index: 9;
   position: absolute;
+  pointer-events: none;
 }
-.character-model::before {
-  content: "";
-  width: 100vw;
-  height: 700px;
-  background-color: var(--backgroundColor);
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 9;
-  position: absolute;
-}
+/* Removed .character-model::before 700px black box which occluded the About section on mobile/tablet viewports */
 .character-loaded .character-rim {
   animation: backlight 3s forwards;
   animation-delay: 0.3s;

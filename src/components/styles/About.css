@@ -1,126 +1,240 @@
 .about-section {
   display: flex;
   align-items: center;
-  justify-content: left;
-  place-items: center;
+  justify-content: center;
   position: relative;
-  opacity: 1;
+  opacity: 1 !important;
+  visibility: visible !important;
   height: auto;
   width: var(--cWidth);
+  max-width: 680px;
   margin: auto;
-}
-.about-me {
-  padding: 50px 0px;
-  padding-bottom: 0;
-  width: 580px;
-  max-width: calc(100% - 15px);
-}
-.about-me h3 {
-  font-size: 25px;
-  text-transform: uppercase;
-  letter-spacing: 7px;
-  font-weight: 400;
-  color: var(--accentColor);
-  margin-bottom: 20px;
+  padding: 90px 0 60px 0;
+  z-index: var(--z-content);
+  box-sizing: border-box;
 }
 
-.about-me p.para {
-  font-size: 28px;
+.about-me {
+  padding: 0;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+}
+
+.about-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 12px;
+  background: rgba(255, 107, 0, 0.08);
+  border: 1px solid rgba(255, 107, 0, 0.28);
+  border-radius: 9999px;
+  color: #FF9D5C;
+  font-size: 11px;
   font-weight: 600;
-  line-height: 36px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.about-eyebrow-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--accentColor);
+  box-shadow: 0 0 8px var(--accentColor);
+}
+
+.about-me h3.about-title {
+  font-size: clamp(28px, 2.5vw, 42px);
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #FFFFFF;
+  margin: 0 0 8px 0;
+  line-height: 1.15;
+}
+
+.about-title span.accent {
+  color: var(--accentColor);
+}
+
+.about-role-subtitle {
+  font-size: 16px;
+  font-weight: 500;
+  color: #a1a1aa;
   letter-spacing: 0.5px;
-  margin-bottom: 24px;
+  margin: 0 0 22px 0;
 }
 
 .about-details {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  margin-top: 15px;
 }
 
 .about-subtext {
-  font-size: 16px !important;
-  font-weight: 300 !important;
+  font-size: 15.5px !important;
+  font-weight: 350 !important;
   line-height: 26px !important;
-  letter-spacing: 0.3px !important;
-  color: #D4D4D4;
+  letter-spacing: 0.25px !important;
+  color: #D4D4D8;
   margin: 0;
+  opacity: 1;
+}
+
+.about-subtext strong,
+.about-subtext .highlight {
+  color: #FFFFFF;
+  font-weight: 600;
+}
+
+.about-highlight-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.about-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #E4E4E7;
+  padding: 5px 11px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: all 0.2s ease;
+}
+
+.about-chip:hover {
+  background: rgba(255, 107, 0, 0.12);
+  border-color: rgba(255, 107, 0, 0.35);
+  color: #FFFFFF;
 }
 
 .about-philosophy-card {
   margin-top: 14px;
-  padding: 16px 20px;
-  background: rgba(255, 107, 0, 0.05);
+  padding: 18px 22px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 107, 0, 0.08) 0%,
+    rgba(255, 107, 0, 0.02) 100%
+  );
   border: 1px solid rgba(255, 107, 0, 0.25);
   border-radius: 12px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35), inset 0 0 20px rgba(255, 107, 0, 0.04);
+  position: relative;
+  overflow: hidden;
+}
+
+.about-philosophy-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(180deg, #FF6B00 0%, #FF8A3D 100%);
+  border-radius: 4px 0 0 4px;
 }
 
 .philosophy-label {
   display: block;
   font-size: 11px;
   letter-spacing: 1.5px;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--accentColor);
   margin-bottom: 6px;
+  text-transform: uppercase;
 }
 
 .about-philosophy-card blockquote {
   margin: 0;
   font-size: 15px;
   font-style: italic;
-  line-height: 22px;
+  line-height: 24px;
   color: #FFFFFF;
+  font-weight: 400;
 }
 
-@media only screen and (min-width: 600px) {
-  .about-section {
-    justify-content: center;
-  }
+.about-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 10px;
+  flex-wrap: wrap;
 }
+
+.about-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  color: #FFB380;
+  background: rgba(255, 107, 0, 0.08);
+  border: 1px solid rgba(255, 107, 0, 0.25);
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.about-btn-secondary:hover {
+  background: rgba(255, 107, 0, 0.2);
+  border-color: #FF6B00;
+  color: #FFFFFF;
+  transform: translateY(-1px);
+}
+
 @media only screen and (min-width: 768px) {
-  .about-me {
-    width: 580px;
-    max-width: calc(100% - 70px);
-    transform: translateY(0%);
-  }
   .about-section {
-    opacity: 1;
+    padding: 100px 0 70px 0;
+    max-width: 720px;
   }
 }
+
 @media only screen and (min-width: 1025px) {
   .about-section {
     width: var(--cWidth);
-    justify-content: right;
+    justify-content: flex-end;
     max-width: 1920px;
-    height: var(--vh);
-    padding: 0px;
-    opacity: 1;
+    min-height: 100vh;
+    min-height: var(--vh);
+    height: auto;
+    padding: 120px 0;
+    opacity: 1 !important;
+    visibility: visible !important;
   }
   .about-me {
     padding: 0px;
     width: 52%;
-  }
-  .about-me p.para {
-    font-size: clamp(20px, 1.6vw, 30px);
-    line-height: clamp(28px, 2.1vw, 38px);
+    max-width: 660px;
   }
   .about-subtext {
-    font-size: clamp(14px, 0.95vw, 16.5px) !important;
-    line-height: clamp(22px, 1.5vw, 26px) !important;
+    font-size: clamp(14px, 0.98vw, 16px) !important;
+    line-height: clamp(23px, 1.55vw, 27px) !important;
   }
   .about-philosophy-card blockquote {
-    font-size: clamp(13px, 0.9vw, 15px);
-    line-height: clamp(20px, 1.4vw, 23px);
+    font-size: clamp(14px, 0.92vw, 15.5px);
+    line-height: clamp(22px, 1.45vw, 25px);
   }
 }
+
 @media only screen and (min-width: 1950px) {
-  .about-me p.para {
-    font-size: 2.1rem;
-    line-height: 2.5rem;
+  .about-me {
+    max-width: 800px;
   }
   .about-subtext {
     font-size: 1.15rem !important;
-    line-height: 1.8rem !important;
+    line-height: 1.85rem !important;
   }
 }
