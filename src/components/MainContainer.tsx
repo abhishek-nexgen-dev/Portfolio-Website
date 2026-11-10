@@ -17,7 +17,6 @@ import setSplitText from "./utils/splitText";
 // (idle time / near viewport), keeping first paint fast.
 const GlowCursor = lazy(() => import("./GlowCursor"));
 
-
 const MainContainer = ({ children }: PropsWithChildren) => {
   const [isDesktopView, setIsDesktopView] = useState<boolean>(
     window.innerWidth > 1024
