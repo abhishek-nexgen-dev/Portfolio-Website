@@ -9,6 +9,7 @@ import {
   FiUsers,
 } from "react-icons/fi";
 import BorderGlow from "./BorderGlow";
+import { getSmoother } from "../context/smoother";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -18,10 +19,10 @@ const ABOUT_PERSON_IMAGES = [
     alt: "Abhishek Kumar Gupta mentoring developers at DevFest Gemini challenge",
   },
   {
-    src: "https://media.licdn.com/dms/image/v2/D5622AQEKQrdrr43eGQ/feedshare-shrink_480/B56ZvWP70YGsAw-/0/1768826060627?e=1795651200&v=beta&t=FrQTVqV-7egqYr43TnUG_Q2W4Sj2dGYPaW0fduIz-yY",
+    src: "https://res.cloudinary.com/dpnc8ddpf/image/upload/v1794372236/1768826060627_hmnolo.jpg",
   },
   {
-    src: "https://media.licdn.com/dms/image/v2/D5622AQG7HWPEC_L6nw/feedshare-shrink_800/B56aGvTyjXIAAg-/0/1793942563582?e=1795651200&v=beta&t=1ofXfcsMm3IGg0qMct4oesH4jPss0f4n-5IjX-FI474",
+    src: "https://res.cloudinary.com/dpnc8ddpf/image/upload/v1794372235/1793942563582_e3tmlz.jpg",
   
   }
   
@@ -252,10 +253,11 @@ const About = () => {
                         slideRefs.current[index] = el;
                       }}
                       src={image.src}
-                      alt={image.alt}
+                      alt={image.alt ?? "Abhishek Kumar Gupta"}
                       width={720}
                       height={900}
                       decoding="async"
+                      referrerPolicy="no-referrer"
                       className="absolute inset-0 h-full w-full object-cover object-top will-change-transform"
                     />
                   ))}
@@ -351,6 +353,15 @@ const About = () => {
             <div className="mt-2 flex flex-wrap items-center gap-3">
               <a
                 href="#work"
+                onClick={(e) => {
+                  if (window.innerWidth > 1024) {
+                    const smoother = getSmoother();
+                    if (smoother) {
+                      e.preventDefault();
+                      smoother.scrollTo("#work", true, "top top");
+                    }
+                  }
+                }}
                 className="inline-flex items-center gap-1.5 rounded-xl border border-[#FF6B00]/30 bg-[#FF6B00]/[0.08] px-4 py-2.5 text-xs font-semibold tracking-wide text-[#FFB380] transition-all duration-200 hover:-translate-y-0.5 hover:border-[#FF6B00] hover:bg-[#FF6B00]/20 hover:text-white"
               >
                 <span>View Featured Projects</span>
@@ -358,6 +369,15 @@ const About = () => {
               </a>
               <a
                 href="#career"
+                onClick={(e) => {
+                  if (window.innerWidth > 1024) {
+                    const smoother = getSmoother();
+                    if (smoother) {
+                      e.preventDefault();
+                      smoother.scrollTo("#career", true, "top top");
+                    }
+                  }
+                }}
                 className="inline-flex items-center gap-1.5 rounded-xl border border-white/[0.08] bg-[#101014] px-4 py-2.5 text-xs font-semibold tracking-wide text-white/75 transition-all duration-200 hover:-translate-y-0.5 hover:border-orange-500/35 hover:bg-white/[0.06] hover:text-white"
               >
                 <span>Explore Career Timeline</span>

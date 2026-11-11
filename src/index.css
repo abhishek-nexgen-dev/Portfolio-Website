@@ -29,24 +29,23 @@
   --vh: 100svh;
 
   /* ---- Z-INDEX SCALE (single source of truth) -------------------------
-   * The glow trail is ALWAYS the lowest layer: it shows through the
-   * page background and never covers any text, so page content sits
-   * cleanly on top of it.
-   *  1  glow trail (GlowCursor, fixed background layer — always lowest)
-   * 20  smooth content wrapper (#smooth-wrapper — all sections + hero
-   *     text live INSIDE it; hero text 20/21 is internal to it)
-   * 15  ambient glows / 12 nav fade (hero, behind text)
+   * GlowCursor renders above sections using mix-blend-mode: screen on
+   * its fixed container so light trails glide seamlessly across dark
+   * backgrounds, hero media, and cards without washing out white text,
+   * while remaining below the navbar, modals, and loading screen.
    *  5  page sections (internal to the content wrapper)
+   * 15  ambient glows
+   * 20  smooth content wrapper (#smooth-wrapper — all sections live INSIDE)
+   * 25  nav fade (softens scrolled content passing under fixed header)
+   * 30  glow trail (GlowCursor fixed screen-blended overlay)
    * 90  social icons / resume button (fixed side rails)
    * 1000 navbar (fixed header)
-   * 2000 modals (CaseStudy / Recruiter)
-   * 3000 loading screen (topmost, dismissed after intro)
-   * Inner-element z-indexes (inside a component's own stacking
-   * context) stay small and local — they never compete globally. */
-  --z-glow: 1;
+   * 2000 modals (Recruiter / Lightbox)
+   * 3000 loading screen (topmost, dismissed after intro) */
+  --z-glow: 30;
   --z-section: 5;
   --z-ambient: 15;
-  --z-nav-fade: 12;
+  --z-nav-fade: 25;
   --z-content: 20;
   --z-hero-text: 20;
   --z-hero-info: 21;
@@ -121,6 +120,9 @@ body {
 }
 
 @keyframes loadingCircle2 {
+  0% {
+    transform: translate(calc(100% - 2px), -50%) rotate(0deg);
+  }
   100% {
     transform: translate(calc(100% - 2px), -50%) rotate(360deg);
   }

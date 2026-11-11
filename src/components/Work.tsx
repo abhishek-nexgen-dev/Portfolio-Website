@@ -2,8 +2,7 @@ import WorkImage from "./WorkImage";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect, useState, useMemo } from "react";
-import { projectsData, ProjectItem } from "../data/projectsData";
-import CaseStudyModal from "./CaseStudyModal";
+import { projectsData } from "../data/projectsData";
 import { FaGithub, FaStar } from "react-icons/fa6";
 import { MdArrowOutward, MdAutoStories } from "react-icons/md";
 
@@ -19,9 +18,6 @@ const categories = [
 
 const Work = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
-  const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(
-    null
-  );
 
   const filteredProjects = useMemo(() => {
     if (selectedCategory === "All") return projectsData;
@@ -52,10 +48,17 @@ const Work = () => {
         const parentWidth = box[0].parentElement.getBoundingClientRect().width;
         const padding: number =
           parseInt(window.getComputedStyle(box[0]).padding) / 2;
-        translateX = rect.width * box.length - (rectLeft + parentWidth) + padding;
+        translateX = Math.max(
+          0,
+          rect.width * box.length - (rectLeft + parentWidth) + padding
+        );
       }
 
       setTranslateX();
+      if (translateX <= 0) {
+        gsap.set(".work-flex", { clearProps: "x" });
+        return undefined;
+      }
 
       const timeline = gsap.timeline({
         scrollTrigger: {
@@ -109,11 +112,10 @@ const Work = () => {
     "inline-flex h-[34px] w-[34px] items-center justify-center rounded-[8px] border border-white/15 bg-white/[0.08] text-[15px] text-white! transition-all duration-200 ease-in-out hover:border-[var(--accentColor)] hover:bg-white/[0.18] hover:text-white!";
 
   return (
-    <>
-      <div
-        className="work-section h-auto min-h-0 overflow-visible pt-[40px] pb-[80px] transition-none min-[1025px]:box-border min-[1025px]:h-screen min-[1025px]:py-0 min-[1025px]:will-change-transform"
-        id="work"
-      >
+    <div
+      className="work-section h-auto min-h-0 overflow-visible pt-[40px] pb-[80px] transition-none min-[1025px]:box-border min-[1025px]:h-screen min-[1025px]:py-0 min-[1025px]:will-change-transform"
+      id="work"
+    >
         <div className="work-container section-container mx-auto flex h-auto flex-col content-normal min-[1025px]:h-full min-[1025px]:content-stretch">
           <div className="relative z-[var(--z-section)] mt-[20px] mb-[24px] flex flex-wrap items-end justify-between gap-[16px] min-[1025px]:mt-[50px] min-[1025px]:mb-[20px]">
             <div>
@@ -184,12 +186,14 @@ const Work = () => {
                   </p>
 
                   <div className="mt-[15px] flex items-center gap-[10px] max-[1024px]:flex-wrap">
-                    <button
-                      className="inline-flex cursor-pointer items-center gap-[6px] rounded-[8px] border-0 bg-[linear-gradient(135deg,#FF6B00_0%,#CC5200_100%)] px-[14px] py-[8px] text-[12px] font-semibold tracking-[0.3px] text-white shadow-[0_4px_12px_rgba(255,107,0,0.25)] transition-all duration-[250ms] ease-in-out hover:-translate-y-[2px] hover:shadow-[0_6px_18px_rgba(255,107,0,0.45)]"
-                      onClick={() => setSelectedProject(project)}
+                    <a
+                      href={project.caseStudyUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex cursor-pointer items-center gap-[6px] rounded-[8px] border-0 bg-[linear-gradient(135deg,#FF6B00_0%,#CC5200_100%)] px-[14px] py-[8px] text-[12px] font-semibold tracking-[0.3px] text-white! shadow-[0_4px_12px_rgba(255,107,0,0.25)] transition-all duration-[250ms] ease-in-out hover:-translate-y-[2px] hover:text-white! hover:shadow-[0_6px_18px_rgba(255,107,0,0.45)]"
                     >
-                      <MdAutoStories /> View Case Study
-                    </button>
+                      <MdAutoStories /> View Case Study <MdArrowOutward />
+                    </a>
                     <a
                       href={project.githubUrl}
                       target="_blank"
@@ -223,13 +227,7 @@ const Work = () => {
             ))}
           </div>
         </div>
-      </div>
-
-      <CaseStudyModal
-        project={selectedProject}
-        onClose={() => setSelectedProject(null)}
-      />
-    </>
+    </div>
   );
 };
 

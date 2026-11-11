@@ -414,7 +414,38 @@ const GlowCursor = ({
       depth: false,
       stencil: false
     });
-    if (!container || !canvas || !gl || !gl.getExtension('EXT_color_buffer_float')) return undefined;
+    const hasFloatExt = Boolean(gl?.getExtension('EXT_color_buffer_float'));
+    const hasHalfFloatExt = Boolean(gl?.getExtension('EXT_color_buffer_half_float'));
+    if (!container || !canvas || !gl || (!hasFloatExt && !hasHalfFloatExt)) return undefined;
+
+    const supportsRenderTarget = (internalFormat: number, format: number): boolean => {
+      const tex = gl.createTexture();
+      const fbo = gl.createFramebuffer();
+      if (!tex || !fbo) {
+        if (tex) gl.deleteTexture(tex);
+        if (fbo) gl.deleteFramebuffer(fbo);
+        return false;
+      }
+      gl.bindTexture(gl.TEXTURE_2D, tex);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
+      gl.texImage2D(gl.TEXTURE_2D, 0, internalFormat, 4, 4, 0, format, gl.HALF_FLOAT, null);
+      gl.bindFramebuffer(gl.FRAMEBUFFER, fbo);
+      gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, tex, 0);
+      const status = gl.checkFramebufferStatus(gl.FRAMEBUFFER);
+      gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+      gl.deleteFramebuffer(fbo);
+      gl.deleteTexture(tex);
+      return status === gl.FRAMEBUFFER_COMPLETE;
+    };
+
+    if (!supportsRenderTarget(gl.RGBA16F, gl.RGBA)) return undefined;
+    const rgFormat: [number, number] = supportsRenderTarget(gl.RG16F, gl.RG)
+      ? [gl.RG16F, gl.RG]
+      : [gl.RGBA16F, gl.RGBA];
+    const rFormat: [number, number] = supportsRenderTarget(gl.R16F, gl.RED)
+      ? [gl.R16F, gl.RED]
+      : rgFormat;
 
     const vertexShader = compile(gl, gl.VERTEX_SHADER, VERTEX);
     if (!vertexShader) return undefined;
@@ -620,12 +651,12 @@ const GlowCursor = ({
         bloomH >>= 1;
       }
       state.targets = {
-        velocity: createPair(simW, simH, gl.RG16F, gl.RG, gl.LINEAR),
+        velocity: createPair(simW, simH, rgFormat[0], rgFormat[1], gl.LINEAR),
         dye: createPair(dyeW, dyeH, gl.RGBA16F, gl.RGBA, gl.LINEAR),
         forward: createTarget(dyeW, dyeH, gl.RGBA16F, gl.RGBA, gl.LINEAR),
         back: createTarget(dyeW, dyeH, gl.RGBA16F, gl.RGBA, gl.LINEAR),
-        pressure: createPair(simW, simH, gl.R16F, gl.RED, gl.NEAREST),
-        divergence: createTarget(simW, simH, gl.R16F, gl.RED, gl.NEAREST),
+        pressure: createPair(simW, simH, rFormat[0], rFormat[1], gl.NEAREST),
+        divergence: createTarget(simW, simH, rFormat[0], rFormat[1], gl.NEAREST),
         bloom
       };
     };
@@ -1028,13 +1059,12 @@ const GlowCursor = ({
     <div
       ref={containerRef}
       className={['relative h-full w-full overflow-hidden', className].filter(Boolean).join(' ')}
-      style={style}
+      style={{ mixBlendMode: mode, ...style }}
       {...rest}
     >
       <canvas
         ref={canvasRef}
         className="pointer-events-none absolute inset-0 block h-full w-full select-none"
-        style={{ mixBlendMode: mode }}
         aria-hidden="true"
       />
       {children && <div className="relative z-[1] h-full w-full">{children}</div>}

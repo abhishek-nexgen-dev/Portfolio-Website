@@ -110,18 +110,18 @@ const Contact = () => {
           <div className="contact-box flex flex-col">
             <h4 className={sectionHeadingClass}>Social & Code</h4>
             <a
-              href="https://github.com/AbhishekNexGenDev"
+              href="https://github.com/abhishek-nexgen-dev"
               target="_blank"
               rel="noopener noreferrer"
               className={socialLinkClass}
             >
               <span className={socialLabelClass}>
-                <FaGithub /> GitHub (AbhishekNexGenDev)
+                <FaGithub /> GitHub (abhishek-nexgen-dev)
               </span>
               <MdArrowOutward />
             </a>
             <a
-              href="https://www.linkedin.com/in/abhisheknexgendev"
+              href="https://www.linkedin.com/in/abhishek-nexgen-dev/"
               target="_blank"
               rel="noopener noreferrer"
               className={socialLinkClass}

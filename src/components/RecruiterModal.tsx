@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   MdClose,
   MdArrowOutward,
@@ -8,6 +8,7 @@ import {
   MdLocationOn,
 } from "react-icons/md";
 import { FaGithub, FaLinkedinIn, FaEnvelope, FaGraduationCap, FaBriefcase, FaCode } from "react-icons/fa6";
+import { getSmoother } from "../context/smoother";
 import "./styles/RecruiterModal.css";
 
 interface Props {
@@ -17,27 +18,51 @@ interface Props {
 
 const RecruiterModal = ({ isOpen, onClose }: Props) => {
   const [copied, setCopied] = useState(false);
+  const onCloseRef = useRef(onClose);
+  onCloseRef.current = onClose;
+  const copyTimerRef = useRef<number | null>(null);
 
   useEffect(() => {
+    if (!isOpen) return;
+
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
+      if (e.key === "Escape") onCloseRef.current();
     };
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-      window.addEventListener("keydown", handleKeyDown);
-    }
+    const smoother = getSmoother();
+    const prevOverflowY = document.body.style.overflowY;
+
+    document.body.style.overflowY = "hidden";
+    smoother?.paused(true);
+    window.addEventListener("keydown", handleKeyDown);
+
     return () => {
-      document.body.style.overflow = "auto";
+      document.body.style.overflowY = prevOverflowY || "auto";
+      smoother?.paused(false);
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [isOpen, onClose]);
+  }, [isOpen]);
+
+  useEffect(() => {
+    return () => {
+      if (copyTimerRef.current !== null) {
+        window.clearTimeout(copyTimerRef.current);
+      }
+    };
+  }, []);
 
   if (!isOpen) return null;
 
-  const copyEmail = () => {
-    navigator.clipboard.writeText("abhishek.nexgen.dev@gmail.com");
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText("abhishek.nexgen.dev@gmail.com");
+      setCopied(true);
+      if (copyTimerRef.current !== null) {
+        window.clearTimeout(copyTimerRef.current);
+      }
+      copyTimerRef.current = window.setTimeout(() => setCopied(false), 2000);
+    } catch (error) {
+      console.error("Unable to copy email:", error);
+    }
   };
 
   return (
@@ -102,7 +127,7 @@ const RecruiterModal = ({ isOpen, onClose }: Props) => {
             )}
           </button>
           <a
-            href="https://www.linkedin.com/in/abhisheknexgendev"
+            href="https://www.linkedin.com/in/abhishek-nexgen-dev/"
             target="_blank"
             rel="noopener noreferrer"
             className="recruiter-action-btn outline"
@@ -110,7 +135,7 @@ const RecruiterModal = ({ isOpen, onClose }: Props) => {
             <FaLinkedinIn /> LinkedIn <MdArrowOutward />
           </a>
           <a
-            href="https://github.com/AbhishekNexGenDev"
+            href="https://github.com/abhishek-nexgen-dev"
             target="_blank"
             rel="noopener noreferrer"
             className="recruiter-action-btn outline"

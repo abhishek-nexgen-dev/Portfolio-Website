@@ -1,20 +1,16 @@
-/* GlowCursor (WebGL trail) — fixed full-viewport BACKGROUND layer.
- * Always the lowest z-index: it shows through the page background
- * and never covers any text. Z-index scale lives in index.css (:root)
- * — see --z-* tokens. */
+/* GlowCursor (WebGL trail) — fixed full-viewport screen-blended layer.
+ * Uses mix-blend-mode: screen above #smooth-wrapper (z-20) so it trails
+ * smoothly across dark backgrounds, cards, and hero media while staying
+ * below fixed navbar (1000), modals (2000), and loading screen (3000). */
 .glow-cursor-layer {
   position: fixed;
   inset: 0;
   z-index: var(--z-glow);
   pointer-events: none;
+  mix-blend-mode: screen;
 }
 
-/* All page content (sections + hero text) lives inside #smooth-wrapper.
- * ScrollSmoother transforms #smooth-content, making it a stacking
- * context at z-index:auto — so without this, the root-level glow
- * (z-index:1) would paint ABOVE all content despite higher internal
- * z-indexes (text 20/21). Putting the whole content wrapper above the
- * glow (1) guarantees: background glow < text, always. */
+/* Smooth content wrapper stacking root inside the viewport. */
 #smooth-wrapper {
   position: relative;
   z-index: var(--z-content);

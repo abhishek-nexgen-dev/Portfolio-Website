@@ -75,7 +75,7 @@ const BeyondTheCode = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative z-[var(--z-section)] mx-auto overflow-hidden bg-black pt-[80px] pb-[90px] min-[641px]:pt-[110px] min-[641px]:pb-[120px]"
+      className="relative z-[var(--z-section)] mx-auto overflow-hidden pt-[80px] pb-[90px] min-[641px]:pt-[110px] min-[641px]:pb-[120px]"
       id="beyond-the-code"
       aria-label="Beyond the Code"
     >

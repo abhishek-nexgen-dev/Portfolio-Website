@@ -1,280 +1,42 @@
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import RecruiterModal from "./RecruiterModal";
 import { getSmoother } from "../context/smoother";
-import { useLoading } from "../context/useLoading";
 
 import { MdDownload } from "react-icons/md";
 import {
   FiArrowUpRight,
   FiCopy,
   FiCheck,
-  FiVolume2,
-  FiVolumeX,
 } from "react-icons/fi";
 
 const EMAIL = "abhishek.nexgen.dev@gmail.com";
 
-const HERO_VIDEO =
-  "https://res.cloudinary.com/dpnc8ddpf/video/upload/v1794340002/gemini_generated_video_9ba42a3f_mflamr.mp4";
-
-const HERO_POSTER =
-  "https://res.cloudinary.com/dpnc8ddpf/image/upload/v1794337576/42117f8d-a260-4639-9ba7-71c838ebad2d_yx7au1.png";
-const HERO_FINAL_IMAGE =
-  "https://res.cloudinary.com/dpnc8ddpf/image/upload/v1794337576/42117f8d-a260-4639-9ba7-71c838ebad2d_yx7au1.png";
+const HERO_IMAGE =
+  "https://res.cloudinary.com/dpnc8ddpf/image/upload/v1794371653/Gemini_Generated_Image_crt47xcrt47xcrt4_za6ask.png";
 
 const Landing = () => {
-  const { isLoading } = useLoading();
-
   const [isRecruiterOpen, setIsRecruiterOpen] = useState(false);
   const [copiedEmail, setCopiedEmail] = useState(false);
-  const [isInHero, setIsInHero] = useState(true);
-  const [hasStarted, setHasStarted] = useState(false);
-  const [videoEnded, setVideoEnded] = useState(false);
-  const [isMuted, setIsMuted] = useState(false);
-  const [showFinalImage, setShowFinalImage] = useState(
-    () =>
-      typeof window !== "undefined" &&
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches
-  );
 
-  const sectionRef = useRef<HTMLElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const copyTimerRef = useRef<number | null>(null);
 
-  const canPlayRef = useRef(false);
-  const autoMutedRef = useRef(false);
-  const userMutedRef = useRef(false);
-  const hasPlayedRef = useRef(false);
-
-  canPlayRef.current =
-    !isLoading &&
-    isInHero &&
-    !videoEnded &&
-    !hasPlayedRef.current;
-
-  // Observe hero visibility.
   useEffect(() => {
-    const section = sectionRef.current;
-    if (!section) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => setIsInHero(entry.isIntersecting),
-      { threshold: 0.25 }
-    );
-
-    observer.observe(section);
-    return () => observer.disconnect();
-  }, []);
-
-  // Respect reduced-motion preferences.
-  useEffect(() => {
-    const mediaQuery = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    );
-
-    const handleChange = (event: MediaQueryListEvent) => {
-      if (event.matches) {
-        videoRef.current?.pause();
-        hasPlayedRef.current = true;
-        setVideoEnded(true);
-        setShowFinalImage(true);
-      }
-    };
-
-    if (mediaQuery.matches) {
-      hasPlayedRef.current = true;
-      setVideoEnded(true);
-      setShowFinalImage(true);
-    }
-
-    mediaQuery.addEventListener("change", handleChange);
-    return () =>
-      mediaQuery.removeEventListener("change", handleChange);
-  }, []);
-
-  // Start the video only after the loader finishes.
-  const startPlayback = useCallback(async () => {
-    const video = videoRef.current;
-
-    if (
-      !video ||
-      !canPlayRef.current ||
-      document.hidden ||
-      !video.paused ||
-      hasPlayedRef.current
-    ) {
-      return;
-    }
-
-    const wantMuted = userMutedRef.current;
-
-    try {
-      video.defaultMuted = wantMuted;
-      video.muted = wantMuted;
-      video.volume = 1;
-
-      await video.play();
-
-      if (!canPlayRef.current || document.hidden) {
-        video.pause();
-        return;
-      }
-
-      hasPlayedRef.current = true;
-      setHasStarted(true);
-      setIsMuted(wantMuted);
-      autoMutedRef.current = false;
-    } catch (error) {
-      if (!canPlayRef.current || document.hidden) return;
-
-      if (
-        error instanceof DOMException &&
-        error.name === "AbortError"
-      ) {
-        return;
-      }
-
-      // Retry with muted playback if autoplay with sound is blocked.
-      if (!wantMuted) {
-        try {
-          video.defaultMuted = true;
-          video.muted = true;
-
-          await video.play();
-
-          if (!canPlayRef.current || document.hidden) {
-            video.pause();
-            return;
-          }
-
-          hasPlayedRef.current = true;
-          setHasStarted(true);
-          setIsMuted(true);
-          autoMutedRef.current = true;
-          return;
-        } catch (mutedError) {
-          if (
-            mutedError instanceof DOMException &&
-            mutedError.name === "AbortError"
-          ) {
-            return;
-          }
-        }
-      }
-
-      // If playback fails, display the final image.
-      hasPlayedRef.current = true;
-      setVideoEnded(true);
-      setShowFinalImage(true);
-    }
-  }, []);
-
-  // Trigger playback once loading is complete.
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video || videoEnded || hasPlayedRef.current) return;
-
-    if (isLoading || !isInHero) {
-      video.pause();
-      return;
-    }
-
-    void startPlayback();
-
-    const handleVisibility = () => {
-      if (document.hidden) {
-        video.pause();
-      } else if (canPlayRef.current) {
-        void startPlayback();
-      }
-    };
-
-    document.addEventListener(
-      "visibilitychange",
-      handleVisibility
-    );
-
-    return () =>
-      document.removeEventListener(
-        "visibilitychange",
-        handleVisibility
-      );
-  }, [isInHero, isLoading, startPlayback, videoEnded]);
-
-  // Unlock audio after browser forces muted autoplay.
-  useEffect(() => {
-    if (!isMuted || videoEnded || !isInHero || isLoading) return;
-
-    const unlockAudio = (event: Event) => {
-      if (!autoMutedRef.current || userMutedRef.current) return;
-
-      const target = event.target as Element | null;
-      if (target?.closest("[data-hero-audio-btn]")) return;
-
-      const video = videoRef.current;
-      if (!video || !hasPlayedRef.current) return;
-
-      video.defaultMuted = false;
-      video.muted = false;
-      video.volume = 1;
-
-      autoMutedRef.current = false;
-      setIsMuted(false);
-    };
-
-    window.addEventListener("click", unlockAudio);
-    window.addEventListener("keydown", unlockAudio);
-
     return () => {
-      window.removeEventListener("click", unlockAudio);
-      window.removeEventListener("keydown", unlockAudio);
+      if (copyTimerRef.current !== null) {
+        window.clearTimeout(copyTimerRef.current);
+      }
     };
-  }, [isInHero, isLoading, isMuted, videoEnded]);
-
-  const handleVideoEnded = () => {
-    videoRef.current?.pause();
-
-    autoMutedRef.current = false;
-    hasPlayedRef.current = true;
-
-    setVideoEnded(true);
-    setShowFinalImage(true);
-    setIsMuted(false);
-  };
-
-  const handleVideoError = () => {
-    autoMutedRef.current = false;
-    hasPlayedRef.current = true;
-
-    setVideoEnded(true);
-    setShowFinalImage(true);
-    setIsMuted(false);
-  };
-
-  const handleToggleAudio = () => {
-    const video = videoRef.current;
-    if (!video || videoEnded) return;
-
-    const nextMuted = !video.muted;
-
-    autoMutedRef.current = false;
-    userMutedRef.current = nextMuted;
-
-    video.defaultMuted = nextMuted;
-    video.muted = nextMuted;
-
-    if (!nextMuted) {
-      video.volume = 1;
-    }
-
-    setIsMuted(nextMuted);
-  };
+  }, []);
 
   const handleCopyEmail = async () => {
     try {
       await navigator.clipboard.writeText(EMAIL);
       setCopiedEmail(true);
-      window.setTimeout(() => setCopiedEmail(false), 2200);
+      if (copyTimerRef.current !== null) {
+        window.clearTimeout(copyTimerRef.current);
+      }
+      copyTimerRef.current = window.setTimeout(() => setCopiedEmail(false), 2200);
     } catch (error) {
       console.error("Unable to copy email:", error);
     }
@@ -296,52 +58,42 @@ const Landing = () => {
   return (
     <>
       <section
-        ref={sectionRef}
         id="landingDiv"
-        className="relative isolate min-h-svh w-full overflow-hidden  text-white"
+        className="relative min-h-svh w-full overflow-hidden text-white"
       >
-        {/* HERO VISUAL */}
+        {/* HERO VISUAL — masked to transparency instead of painting black scrims */}
         <div
           aria-hidden="true"
           className="hero-visual pointer-events-none absolute inset-0 z-0 overflow-hidden"
         >
-          <div className="absolute inset-y-0 right-0 w-full opacity-50 sm:w-[85%] sm:opacity-75 lg:w-[75%] lg:opacity-100 xl:w-[80%]">
-
-            {/* INITIAL POSTER / FINAL IMAGE */}
-            <img
-              src={showFinalImage ? HERO_FINAL_IMAGE : HERO_POSTER}
-              alt=""
-              className="absolute inset-0 z-[1] h-full w-full object-cover object-center transition-opacity duration-1000"
-            />
-
-
-
-            {/* VIDEO — HIDDEN UNTIL PLAYBACK STARTS */}
-            <video
-              ref={videoRef}
-              src={HERO_VIDEO}
-              playsInline
-              preload="auto"
-              poster={HERO_POSTER}
-              onEnded={handleVideoEnded}
-              onError={handleVideoError}
-              className={`absolute inset-0 z-[2] h-full w-full object-cover object-center transition-opacity duration-1000 ${
-                hasStarted && !videoEnded
-                  ? "opacity-100"
-                  : "opacity-0"
-              }`}
-            />
+          <div
+            className="absolute inset-y-0 right-0 w-full opacity-40 sm:w-[85%] sm:opacity-65 lg:w-[75%] lg:opacity-100 xl:w-[80%]"
+            style={{
+              maskImage:
+                "linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.22) 22%, rgba(0,0,0,0.78) 46%, black 68%)",
+              WebkitMaskImage:
+                "linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.22) 22%, rgba(0,0,0,0.78) 46%, black 68%)",
+            }}
+          >
+            <div
+              className="relative h-full w-full"
+              style={{
+                maskImage:
+                  "linear-gradient(to bottom, transparent 0%, black 20%, black 84%, transparent 100%)",
+                WebkitMaskImage:
+                  "linear-gradient(to bottom, transparent 0%, black 12%, black 84%, transparent 100%)",
+              }}
+            >
+              <img
+                src={HERO_IMAGE}
+                alt=""
+                decoding="async"
+                fetchPriority="high"
+                draggable={false}
+                className="pointer-events-none absolute inset-0 h-full w-full select-none object-cover object-center"
+              />
+            </div>
           </div>
-
-          {/* MAIN GRADIENT */}
-          <div className="absolute inset-0 z-[3] bg-[linear-gradient(90deg,#000000_0%,rgba(0,0,0,0.92)_38%,rgba(0,0,0,0.28)_100%)] lg:bg-[linear-gradient(90deg,#000000_0%,rgba(0,0,0,0.94)_42%,rgba(0,0,0,0.5)_58%,transparent_88%)]" />
-
-          {/* MOBILE SCRIM */}
-          <div className="absolute inset-0 z-[3] bg-black/35 lg:hidden" />
-
-          {/* TOP & BOTTOM BLENDING */}
-          <div className="absolute inset-x-0 top-0 z-[3] h-36 bg-gradient-to-b from-black/80 to-transparent" />
-          <div className="absolute inset-x-0 bottom-0 z-[3] h-44 bg-gradient-to-t from-black via-black/40 to-transparent" />
 
           {/* AMBIENT LIGHTING */}
           <div className="absolute -left-40 top-1/3 z-[3] h-80 w-80 rounded-full bg-orange-600/[0.08] blur-[120px]" />
@@ -413,12 +165,7 @@ const Landing = () => {
                 and reliable APIs using the MERN stack and TypeScript.
               </p>
 
-              <p>
-                I enjoy solving complex problems, exploring AI-powered
-                technologies, and turning ideas into real-world products.
-                Currently learning Python and deepening my knowledge
-                of system design.
-              </p>
+             
             </div>
 
             {/* EXPERTISE */}
@@ -485,28 +232,7 @@ const Landing = () => {
           </div>
         </div>
 
-        {/* AUDIO CONTROL */}
-        {!videoEnded && hasStarted && !isLoading && isInHero && (
-          <button
-            type="button"
-            data-hero-audio-btn="true"
-            onClick={handleToggleAudio}
-            aria-label={isMuted ? "Unmute hero video audio" : "Mute hero video audio"}
-            className="absolute bottom-6 right-5 z-20 inline-flex cursor-pointer items-center gap-2 rounded-full border border-orange-500/30 bg-[#101014]/85 px-3.5 py-2 text-xs font-medium text-[#FFB380] backdrop-blur-md transition-all duration-300 hover:border-[#FF6B00] hover:bg-orange-500/15 hover:text-white sm:right-8"
-          >
-            {isMuted ? (
-              <>
-                <FiVolumeX className="text-sm text-orange-400" />
-                <span>Tap for Sound</span>
-              </>
-            ) : (
-              <>
-                <FiVolume2 className="text-sm text-[#FF6B00]" />
-                <span>Audio On</span>
-              </>
-            )}
-          </button>
-        )}
+    
 
         {/* SCROLL INDICATOR */}
         <div className="hero-animate pointer-events-none absolute bottom-6 left-1/2 z-10 hidden -translate-x-1/2 items-center gap-3 text-[10px] font-medium uppercase tracking-[0.3em] text-white/40 lg:flex">

@@ -1,5 +1,6 @@
 import { lazy, Suspense, useEffect, useState } from "react";
 import gsap from "gsap";
+import { useLoading } from "../context/useLoading";
 import About from "./About";
 import Career from "./Career";
 import Contact from "./Contact";
@@ -20,27 +21,33 @@ import { setAllTimeline } from "./utils/GsapScroll";
 const GlowCursor = lazy(() => import("./GlowCursor"));
 
 const MainContainer = () => {
-  // WebGL glow trail only makes sense with a fine (mouse) pointer,
-  // and only after the browser is idle — never on the critical path.
-  const [isFinePointer] = useState<boolean>(
-    () => window.matchMedia("(pointer: fine)").matches
+  const { isLoading } = useLoading();
+  // WebGL glow trail activates for mice/trackpads once the hero reveals.
+  const [isFinePointer, setIsFinePointer] = useState<boolean>(
+    () =>
+      window.matchMedia("(any-pointer: fine)").matches ||
+      window.matchMedia("(pointer: fine)").matches
   );
+  useEffect(() => {
+    const anyFineQuery = window.matchMedia("(any-pointer: fine)");
+    const fineQuery = window.matchMedia("(pointer: fine)");
+    const updatePointer = () => {
+      setIsFinePointer(anyFineQuery.matches || fineQuery.matches);
+    };
+    anyFineQuery.addEventListener("change", updatePointer);
+    fineQuery.addEventListener("change", updatePointer);
+    return () => {
+      anyFineQuery.removeEventListener("change", updatePointer);
+      fineQuery.removeEventListener("change", updatePointer);
+    };
+  }, []);
+
   const [glowReady, setGlowReady] = useState(false);
   useEffect(() => {
-    if (!isFinePointer) return;
-    const idle =
-      (window as unknown as { requestIdleCallback?: (cb: () => void, o?: { timeout: number }) => number })
-        .requestIdleCallback?.call(window, () => setGlowReady(true), { timeout: 1500 })
-      ?? window.setTimeout(() => setGlowReady(true), 1200);
-    return () => {
-      const w = window as unknown as {
-        cancelIdleCallback?: (id: number) => void;
-        clearTimeout: typeof clearTimeout;
-      };
-      w.cancelIdleCallback?.(idle as number);
-      w.clearTimeout(idle as unknown as ReturnType<typeof setTimeout>);
-    };
-  }, [isFinePointer]);
+    if (!isFinePointer || isLoading) return;
+    const timer = window.setTimeout(() => setGlowReady(true), 120);
+    return () => window.clearTimeout(timer);
+  }, [isFinePointer, isLoading]);
 
   useEffect(() => {
     const resizeHandler = () => {
@@ -62,9 +69,7 @@ const MainContainer = () => {
 
   return (
     <div className="container-main">
-      {/* GlowCursor trail: fixed BACKGROUND layer at var(--z-glow) —
-          always lowest, so it shows through the background and never
-          covers page text (inside #smooth-wrapper, z-20).
+      {/* GlowCursor trail: fixed screen-blended layer at var(--z-glow).
           Full scale: index.css (:root --z-* tokens). */}
       {isFinePointer && glowReady && (
         <Suspense fallback={null}>
@@ -73,17 +78,17 @@ const MainContainer = () => {
             style={{ position: "fixed", inset: 0, zIndex: "var(--z-glow)", pointerEvents: "none" }}
             color="#FF6B00"
             secondaryColor="#FF8A3D"
-            intensity={1.15}
-            trailWidth={3}
-            linger={1.4}
-            glow={1.1}
-            hotspot={0.8}
-            followSpeed={0.6}
+            intensity={1.3}
+            trailWidth={3.5}
+            linger={1.45}
+            glow={1.25}
+            hotspot={0.85}
+            followSpeed={0.68}
             clickBurst
-            quality="low"
+            quality="medium"
             theme="dark"
             blendMode="screen"
-            maxDevicePixelRatio={1.25}
+            maxDevicePixelRatio={1.5}
             aria-hidden="true"
           />
         </Suspense>

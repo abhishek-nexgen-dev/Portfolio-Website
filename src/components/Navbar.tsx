@@ -95,7 +95,21 @@ const Navbar = () => {
         className="header fixed left-1/2 top-0 z-[1000] flex w-[var(--cWidth)] max-w-[var(--cMaxWidth)] -translate-x-1/2 flex-wrap items-center justify-between gap-3 box-border -mb-[100px] px-0 py-4 lg:flex-nowrap lg:py-7"
       >
         {/* Brand */}
-        <div className="flex shrink-0 items-center gap-4">
+        <a
+          href="#landingDiv"
+          aria-label="Scroll to top"
+          onClick={(e) => {
+            setMobileOpen(false)
+            if (window.innerWidth > 1024) {
+              const smoother = getSmoother()
+              if (smoother) {
+                e.preventDefault()
+                smoother.scrollTo('#landingDiv', true, 'top top')
+              }
+            }
+          }}
+          className="flex shrink-0 items-center gap-4 hover:text-inherit"
+        >
           <div className="origin-left scale-[0.8] sm:scale-90 lg:scale-100">
             <CircularText
               text="AKG*AKG*AKG*"
@@ -106,7 +120,6 @@ const Navbar = () => {
               fontSize={10}
               draggable
               hoverTilt={20}
-              className="custom-class"
               tilt={0}
               fontWeight={900}
               letterSpacing={0}
@@ -116,18 +129,17 @@ const Navbar = () => {
               ring={false}
             />
           </div>
-        </div>
-
-     
+        </a>
 
         {/* Links — inline on desktop, dropdown panel on mobile. No `!important`
             so `lg:flex` correctly overrides the mobile `hidden`. */}
         <ul
+          id="mobile-nav-menu"
           className={`m-0 list-none p-0 text-[12px] lg:flex lg:flex-row lg:items-center lg:gap-[26px] lg:text-[14px] ${
             mobileOpen
               ? 'max-lg:flex max-lg:flex-col'
               : 'max-lg:hidden'
-          } order-3 w-full basis-full gap-1 rounded-2xl border border-white/10 bg-black/95 px-3 py-2 lg:order-none lg:w-auto lg:basis-auto lg:border-0 lg:bg-transparent lg:p-0`}
+          } order-3 w-full basis-full gap-1 rounded-2xl border border-white/10 bg-black/90 px-3 py-2 backdrop-blur-md lg:order-none lg:w-auto lg:basis-auto lg:border-0 lg:bg-transparent lg:p-0 lg:backdrop-blur-none`}
         >
           {NAV_LINKS.map((link) => (
             <li
@@ -173,7 +185,7 @@ const Navbar = () => {
             type="button"
             aria-label="Toggle navigation menu"
             aria-expanded={mobileOpen}
-            aria-controls="site-header"
+            aria-controls="mobile-nav-menu"
             onClick={() => setMobileOpen((v) => !v)}
             className="inline-flex h-11 w-11 shrink-0 cursor-pointer flex-col justify-center gap-[5px] rounded-[10px] border border-white/15 bg-white/5 p-[10px] backdrop-blur-md transition-colors hover:border-[#FF6B00] lg:hidden"
           >
@@ -198,15 +210,15 @@ const Navbar = () => {
 
       {/* Ambient fixed layers */}
       <div
-        className="landing-circle1 pointer-events-none fixed left-0 top-0 z-[var(--z-ambient)] h-[300px] w-[300px] rounded-full bg-[#FF6B00] blur-[60px] shadow-[inset_-50px_40px_50px_rgba(255,107,0,0.6)] animate-[loadingCircle_5s_linear_infinite]"
+        className="landing-circle1 pointer-events-none fixed left-0 top-0 z-[var(--z-ambient)] h-[300px] w-[300px] rounded-full bg-[#FF6B00] opacity-25 blur-[60px] shadow-[inset_-50px_40px_50px_rgba(255,107,0,0.6)] animate-[loadingCircle_5s_linear_infinite]"
         aria-hidden="true"
       />
       <div
-        className="landing-circle2 pointer-events-none fixed right-0 top-1/2 z-[var(--z-ambient)] hidden h-[300px] w-[300px] translate-x-[calc(100%-2px)] -translate-y-1/2 rounded-full bg-[#FF6B00] blur-[50px] shadow-[inset_-50px_40px_50px_rgba(255,107,0,0.6)] animate-[loadingCircle2_5s_linear_infinite]"
+        className="landing-circle2 pointer-events-none fixed right-0 top-1/2 z-[var(--z-ambient)] hidden h-[300px] w-[300px] rounded-full bg-[#FF6B00] opacity-20 blur-[50px] shadow-[inset_-50px_40px_50px_rgba(255,107,0,0.6)] animate-[loadingCircle2_5s_linear_infinite]"
         aria-hidden="true"
       />
       <div
-        className="nav-fade pointer-events-none fixed left-0 top-0 z-[var(--z-nav-fade)] h-[130px] w-full opacity-0 bg-[linear-gradient(0deg,transparent,var(--backgroundColor)_70%)]"
+        className="nav-fade pointer-events-none fixed left-0 top-0 z-[var(--z-nav-fade)] h-[100px] w-full opacity-0 bg-[linear-gradient(0deg,transparent,rgba(0,0,0,0.86)_76%)]"
         aria-hidden="true"
       />
 

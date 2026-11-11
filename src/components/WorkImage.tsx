@@ -27,9 +27,10 @@ const WorkImage = (props: Props) => {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={() => setIsVideo(false)}
         target="_blank"
+        rel="noopener noreferrer"
       >
         {props.link && (
-          <div className="absolute right-[10px] bottom-[10px] flex h-[50px] w-[50px] items-center justify-center rounded-full bg-[var(--backgroundColor)] text-[25px] opacity-0 shadow-[0_0_10px_0_rgba(255,255,255,0.5),inset_0_0_10px_0_#393939] transition-all duration-300 group-hover:opacity-100">
+          <div className="pointer-events-none absolute right-[10px] bottom-[10px] z-10 flex h-[50px] w-[50px] items-center justify-center rounded-full bg-[var(--backgroundColor)] text-[25px] opacity-0 shadow-[0_0_10px_0_rgba(255,255,255,0.5),inset_0_0_10px_0_#393939] transition-all duration-300 group-hover:opacity-100">
             <MdArrowOutward />
           </div>
         )}

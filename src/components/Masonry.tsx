@@ -12,6 +12,7 @@ import {
 } from 'react';
 import { createPortal } from 'react-dom';
 import { FiArrowUpRight, FiX, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
+import { getSmoother } from '../context/smoother';
 
 export interface MasonryItem {
   id: string | number;
@@ -126,7 +127,7 @@ const CAPTION =
 const TITLE = 'text-sm leading-[1.3] font-semibold tracking-[-0.01em]';
 const TEXT = 'text-xs leading-[1.4] opacity-80';
 const GHOST = 'pointer-events-none absolute top-0 left-0';
-const BOX = 'fixed inset-0 z-[1000]';
+const BOX = 'fixed inset-0 z-[2000]';
 const BOX_BACKDROP = 'absolute inset-0 bg-[rgba(9,9,11,0.9)]';
 const BOX_IMAGE =
   'fixed top-0 left-0 block origin-top-left cursor-zoom-out object-cover will-change-transform select-none [-webkit-user-drag:none]';
@@ -968,12 +969,15 @@ const Masonry = ({
   const isOpen = Boolean(openId);
   useEffect(() => {
     if (!isOpen) return undefined;
+    const smoother = getSmoother();
     const previous = document.documentElement.style.overflow;
     document.documentElement.style.overflow = 'hidden';
+    smoother?.paused(true);
     boxRef.current?.querySelector<HTMLElement>('[data-box-close]')?.focus({ preventScroll: true });
     const map = nodes.current;
     return () => {
       document.documentElement.style.overflow = previous;
+      smoother?.paused(false);
       map
         .get(lastShownRef.current ?? '')
         ?.querySelector<HTMLElement>('[data-card]')
