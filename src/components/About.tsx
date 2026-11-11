@@ -219,7 +219,7 @@ const About = () => {
         <div className="flex items-center justify-center">
           <div
             ref={visualRef}
-            className="relative w-full max-w-[330px] py-2 sm:max-w-[370px]"
+            className="relative w-full max-w-[330px] py-2 sm:max-w-[75%] mr-[3vw]"
           >
             {/* Subtle orange glow directly behind frame */}
             <div
@@ -234,7 +234,7 @@ const About = () => {
             />
 
             <BorderGlow
-              className="transition-all duration-500 ease-out hover:-translate-y-1"
+              className="transition-all duration-500 ease-out hover:-translate-y-1 "
               backgroundColor="#101014"
               borderRadius={22}
               glowColor="#FF6B00"

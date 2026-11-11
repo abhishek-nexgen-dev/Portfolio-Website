@@ -12,19 +12,19 @@ export interface ProjectItem {
 }
 
 export const projectsData: ProjectItem[] = [
-  {
-    id: "01",
-    title: "CIITM Student Management System",
-    category: "Full-Stack Application",
-    tools: "MERN · JWT · Socket.IO · Razorpay · Redis",
-    featured: true,
-    summary:
-      "A student management platform featuring role-based access control, payment integration, and real-time administrative dashboards.",
-    image: "/images/projects/ciitm_student_management_1794323857120.jpg",
-    githubUrl: "https://github.com/abhishek-nexgen-dev",
-    liveUrl: "https://github.com/abhishek-nexgen-dev",
-    caseStudyUrl: "https://dev.to",
-  },
+ {
+  id: "01",
+  title: "EduVanta – Institutional Management Platform",
+  category: "Full-Stack Application",
+  tools: "Web Development · Desktop Application · Content Management",
+  featured: true,
+  summary:
+    "An educational institution management platform combining a public-facing website with a dedicated desktop application for administrators to manage admissions, notices, photo albums, and institutional content.",
+  image: "https://res.cloudinary.com/dpnc8ddpf/image/upload/v1794421192/Screenshot_20261111_173628_mz5we2.png",
+  githubUrl: "https://github.com/NexGenStudioDev/Eduvanta-web",
+  liveUrl: "https://eduvanta.abhishek-nexgen.xyz/",
+  caseStudyUrl: "https://dev.to/abhishek-nexgen-dev/eduvanta-website-desktop-management-system-3nfi",
+},
   {
     id: "02",
     title: "Calcutta Hacks – Where Heritage Meets Technology",
@@ -42,39 +42,15 @@ export const projectsData: ProjectItem[] = [
       "https://dev.to/abhishek-nexgen-dev/calcutta-hacks-where-heritage-meets-technology-31d8",
   },
   {
-    id: "03",
-    title: "Tolkify – Real-Time Communication",
-    category: "Real-Time Engineering",
-    tools: "MERN · Socket.IO · TypeScript · Redis",
-    summary:
-      "A real-time communication application focused on interactive messaging and seamless user communication.",
-    image: "/images/projects/tolkify_realtime_chat_1794323858567.jpg",
-    githubUrl: "https://github.com/abhishek-nexgen-dev",
-    liveUrl: "https://github.com/abhishek-nexgen-dev",
-    caseStudyUrl: "https://dev.to",
-  },
-  {
-    id: "04",
-    title: "AI Movie Recommender",
-    category: "AI Integration",
-    tools: "React · Gemini 2.5 · AI APIs · TMDB",
-    summary:
-      "An AI-powered movie recommendation experience that uses Gemini to generate intelligent recommendations.",
-    image: "/images/projects/ai_movie_recommender_1794323860780.jpg",
-    githubUrl: "https://github.com/abhishek-nexgen-dev",
-    liveUrl: "https://github.com/abhishek-nexgen-dev",
-    caseStudyUrl: "https://dev.to",
-  },
-  {
-    id: "05",
-    title: "GDG Ranchi Event Ecosystem",
-    category: "Community Engineering",
-    tools: "React · Node.js · APIs · RabbitMQ · Cloudflare",
-    summary:
-      "Built software for developer community events, including event platforms, permission-based backend systems, and registration workflows.",
-    image: "/images/projects/gdg_devfest_ecosystem_1794323859606.jpg",
-    githubUrl: "https://github.com/abhishek-nexgen-dev",
-    liveUrl: "https://github.com/abhishek-nexgen-dev",
-    caseStudyUrl: "https://dev.to",
-  },
+  id: "03",
+  title: "DevFest Ranchi 2026",
+  category: "Event Technology",
+  tools: "React · TypeScript · Tailwind CSS · GSAP",
+  summary:
+    "The official event website for DevFest Ranchi 2026, built to deliver an engaging digital experience for attendees through event information, speaker highlights, session details, and responsive interfaces.",
+  image: "https://res.cloudinary.com/dpnc8ddpf/image/upload/v1794420215/Screenshot_20261111_181242_pql3yc.png",
+  githubUrl: "https://github.com/amandangi26/gdg-ranchi-devfest",
+  liveUrl: "https://devfest.gdgranchi.in/",
+  caseStudyUrl: "https://dev.to/abhishek-nexgen-dev/building-the-official-devfest-ranchi-2026-website-my-frontend-development-journey-5685",
+}
 ];
