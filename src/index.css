@@ -53,7 +53,59 @@
   --z-navbar: 1000;
   --z-modal: 2000;
   --z-loading: 3000;
+
+  --scrollbar-track: #111111;
+  --scrollbar-thumb: #ff6b00;
+  --scrollbar-thumb-hover: #ff6b00;
+  --scrollbar-width: 7px;
 }
+
+/* Chrome, Edge, Safari */
+::-webkit-scrollbar {
+  width: var(--scrollbar-width);
+  height: var(--scrollbar-width);
+}
+
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 20px;
+
+  border: 2px solid var(--scrollbar-track);
+
+  transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+}
+
+::-webkit-scrollbar-corner {
+  background: var(--scrollbar-track);
+}
+
+/* Firefox */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+
+/* Optional: smoother scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Avoid scrollbar interaction while loader is active */
+body {
+  scrollbar-gutter: stable;
+}
+
+
+
+
 h1,
 h2,
 h3,
