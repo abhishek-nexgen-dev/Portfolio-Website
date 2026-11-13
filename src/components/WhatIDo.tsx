@@ -6,6 +6,19 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 const services = [
+    {
+    title: "AI & MULTI-AGENT",
+    subtitle: "Intelligent Systems",
+    description:
+      "Designing autonomous multi-agent orchestration workflows, LLM integrations, vector database embeddings, and RAG pipelines.",
+    skills: [
+      "LangChain",
+      "LangGraph",
+      "Gemini API",
+      "Vector DBs",
+      "LLM Agents"
+    ],
+  },
   {
     title: "BACKEND & SYSTEMS",
     subtitle: "Architecture & APIs",
@@ -24,22 +37,7 @@ const services = [
       "Docker",
     ],
   },
-  {
-    title: "AI & MULTI-AGENT",
-    subtitle: "Intelligent Systems",
-    description:
-      "Designing autonomous multi-agent orchestration workflows, LLM integrations, vector database embeddings, and RAG pipelines.",
-    skills: [
-      "LangChain",
-      "LangGraph",
-      "Gemini API",
-      "Qdrant",
-      "Vector DBs",
-      "LLM Agents",
-      "Vercel AI SDK",
-      "TensorFlow.js",
-    ],
-  },
+
   {
     title: "FULL-STACK APPS",
     subtitle: "Frontend & Platform Engineering",
