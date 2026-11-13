@@ -202,7 +202,7 @@ const About = () => {
       id="about"
       ref={containerRef}
       aria-labelledby="about-heading"
-      className="relative isolate mx-auto flex min-h-screen w-full max-w-7xl items-center overflow-hidden px-4 py-24 sm:px-6 sm:py-28 lg:px-8"
+      className="relative isolate mx-auto flex  w-full max-w-7xl items-center overflow-hidden px-[3.8vw] py-24 sm:px-6 sm:py-28 lg:px-8"
     >
       {/* Ambient background glows matching TechSkills & Exploring */}
       <div
@@ -216,7 +216,7 @@ const About = () => {
 
       <div className="grid w-full grid-cols-1 items-center gap-12 lg:grid-cols-[0.88fr_1.12fr] lg:gap-16">
         {/* LEFT SECTION — Pure image frame (no text/overlays), cycling bottom-to-top via GSAP */}
-        <div className="flex items-center justify-center">
+        <div className="overflow-hidden hidden lg:flex items-center justify-center">
           <div
             ref={visualRef}
             className="relative w-full max-w-[330px] py-2 sm:max-w-[75%] mr-[3vw]"
@@ -245,7 +245,7 @@ const About = () => {
               coneSpread={28}
             >
               <div className="p-2.5 sm:p-3">
-                <div className="relative h-[60vh] w-full overflow-hidden rounded-2xl border border-white/[0.07] bg-black">
+                <div className="relative h-[65vh] w-full overflow-hidden rounded-2xl border border-white/[0.07] bg-black">
                   {ABOUT_PERSON_IMAGES.map((image, index) => (
                     <img
                       key={image.src}
@@ -258,7 +258,7 @@ const About = () => {
                       height={900}
                       decoding="async"
                       referrerPolicy="no-referrer"
-                      className="absolute inset-0 h-full w-full object-cover object-top will-change-transform"
+                      className="absolute inset-0 h-full w-full object-cover object-center will-change-transform"
                     />
                   ))}
                 </div>

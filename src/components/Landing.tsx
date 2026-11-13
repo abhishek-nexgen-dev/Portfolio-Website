@@ -1,6 +1,6 @@
 
 import { useEffect, useRef, useState } from "react";
-import RecruiterModal from "./RecruiterModal";
+
 import { getSmoother } from "../context/smoother";
 
 import { MdDownload } from "react-icons/md";
@@ -59,7 +59,7 @@ const Landing = () => {
     <>
       <section
         id="landingDiv"
-        className="relative min-h-svh w-full overflow-hidden text-white"
+        className="relative  w-full overflow-hidden text-white"
       >
         {/* HERO VISUAL — masked to transparency instead of painting black scrims */}
         <div
@@ -90,7 +90,7 @@ const Landing = () => {
                 decoding="async"
                 fetchPriority="high"
                 draggable={false}
-                className="pointer-events-none absolute inset-0 h-full w-full select-none object-cover object-center"
+                className="pointer-events-none absolute inset-0 h-full w-full select-none object-cover  object-center"
               />
             </div>
           </div>
@@ -198,14 +198,14 @@ const Landing = () => {
                 <FiArrowUpRight className="text-lg transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
               </a>
 
-              <button
-                type="button"
-                onClick={() => setIsRecruiterOpen(true)}
+              <a
+                href="https://docs.google.com/document/d/1sF2VN9DuwBd0vMRuZnrpSl4sCW5GAQy2/edit?usp=sharing&ouid=115579106773621874111&rtpof=true&sd=true"
+                 target="_blank"
                 className="inline-flex cursor-pointer items-center gap-2.5 rounded-xl border border-[#FF6B00]/35 bg-[#101014]/75 px-5 py-3.5 text-sm font-semibold text-[#FFB380] backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:border-[#FF6B00] hover:bg-[#FF6B00]/15 hover:text-white sm:px-6"
               >
                 <MdDownload size={18} />
-                Resume &amp; Brief
-              </button>
+                View Resume
+              </a>
 
               <button
                 type="button"
@@ -235,17 +235,13 @@ const Landing = () => {
     
 
         {/* SCROLL INDICATOR */}
-        <div className="hero-animate pointer-events-none absolute bottom-6 left-1/2 z-10 hidden -translate-x-1/2 items-center gap-3 text-[10px] font-medium uppercase tracking-[0.3em] text-white/40 lg:flex">
+        <div className="hero-animate pointer-events-none absolute bottom-6 left-1/2 z-10 hidden -translate-x-1/2 items-center gap-3 text-[10px] font-medium uppercase tracking-[0.3em] text-white/40 lg:flex mt-[3vh]">
           <span className="h-px w-8 bg-white/20" />
           Scroll to explore
           <span className="h-px w-8 bg-white/20" />
         </div>
       </section>
 
-      <RecruiterModal
-        isOpen={isRecruiterOpen}
-        onClose={() => setIsRecruiterOpen(false)}
-      />
     </>
   );
 };

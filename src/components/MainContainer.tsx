@@ -68,7 +68,7 @@ const MainContainer = () => {
   }, []);
 
   return (
-    <div className="container-main">
+    <div className="container-main overflow-x-hidden">
       {/* GlowCursor trail: fixed screen-blended layer at var(--z-glow).
           Full scale: index.css (:root --z-* tokens). */}
       {isFinePointer && glowReady && (

@@ -3,7 +3,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import HoverLinks from './HoverLinks'
 import { gsap } from 'gsap'
 import { ScrollSmoother } from 'gsap/ScrollSmoother'
-import RecruiterModal from './RecruiterModal'
+
 import CircularText from './CircularText'
 
 gsap.registerPlugin(ScrollSmoother, ScrollTrigger)
@@ -171,14 +171,14 @@ const Navbar = () => {
 
         {/* Action Zone: Primary CTA + Mobile Hamburger */}
         <div className="flex items-center gap-3 shrink-0">
-          <button
-            type="button"
-            onClick={() => setIsRecruiterOpen(true)}
+          <a
+            href='https://docs.google.com/document/d/1sF2VN9DuwBd0vMRuZnrpSl4sCW5GAQy2/edit?usp=sharing&ouid=115579106773621874111&rtpof=true&sd=true'
+            target='_blank'
             className="hidden sm:inline-flex items-center gap-1.5 rounded-full border border-[#FF6B00]/40 bg-[#FF6B00]/15 px-4 py-1.5 text-xs font-semibold tracking-wider text-[#FFB380] transition-all hover:bg-[#FF6B00] hover:text-white hover:border-[#FF6B00] hover:shadow-[0_0_16px_rgba(255,107,0,0.4)] cursor-pointer whitespace-nowrap"
             title="View Recruiter Executive Brief & Resume"
           >
-            <span>Recruiter Brief</span>
-          </button>
+            <span>View Resume</span>
+          </a>
 
           {/* Hamburger — mobile/tablet only */}
           <button
@@ -222,10 +222,7 @@ const Navbar = () => {
         aria-hidden="true"
       />
 
-      <RecruiterModal
-        isOpen={isRecruiterOpen}
-        onClose={() => setIsRecruiterOpen(false)}
-      />
+  
     </>
   )
 }
