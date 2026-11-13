@@ -2,12 +2,11 @@ import { useEffect, useState } from 'react'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import HoverLinks from './HoverLinks'
 import { gsap } from 'gsap'
-import { ScrollSmoother } from 'gsap/ScrollSmoother'
 
 import CircularText from './CircularText'
 
-gsap.registerPlugin(ScrollSmoother, ScrollTrigger)
-import { setSmoother, getSmoother } from '../context/smoother'
+gsap.registerPlugin(ScrollTrigger)
+import { getSmoother } from '../context/smoother'
 
 const NAV_LINKS = [
   { href: '#landingDiv', label: 'HOME' },
@@ -19,7 +18,6 @@ const NAV_LINKS = [
 ]
 
 const Navbar = () => {
-  const [isRecruiterOpen, setIsRecruiterOpen] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
 
   // Close mobile nav when resizing back to desktop
@@ -42,17 +40,6 @@ const Navbar = () => {
   }, [mobileOpen])
 
   useEffect(() => {
-    setSmoother(
-      ScrollSmoother.create({
-        wrapper: '#smooth-wrapper',
-        content: '#smooth-content',
-        smooth: 0.8,
-        speed: 1.0,
-        effects: false,
-        autoResize: true,
-        ignoreMobileResize: true
-      })
-    )
     const smoother = getSmoother()
 
     smoother?.scrollTop(0)
@@ -64,11 +51,11 @@ const Navbar = () => {
     const linkHandlers = links.map((element) => {
       const handler = (e: Event) => {
         setMobileOpen(false)
-        if (window.innerWidth > 1024) {
+        const targetElem = e.currentTarget as HTMLAnchorElement
+        const section = targetElem.getAttribute('data-href')
+        if (section) {
           e.preventDefault()
-          const targetElem = e.currentTarget as HTMLAnchorElement
-          const section = targetElem.getAttribute('data-href')
-          getSmoother()?.scrollTo(section, true, 'top top')
+          getSmoother()?.scrollTo(section, true)
         }
       }
       element.addEventListener('click', handler)
@@ -76,7 +63,7 @@ const Navbar = () => {
     })
 
     const onResize = () => {
-      ScrollSmoother.refresh(true)
+      getSmoother()?.refresh()
     }
     window.addEventListener('resize', onResize)
 
@@ -100,13 +87,8 @@ const Navbar = () => {
           aria-label="Scroll to top"
           onClick={(e) => {
             setMobileOpen(false)
-            if (window.innerWidth > 1024) {
-              const smoother = getSmoother()
-              if (smoother) {
-                e.preventDefault()
-                smoother.scrollTo('#landingDiv', true, 'top top')
-              }
-            }
+            e.preventDefault()
+            getSmoother()?.scrollTo('#landingDiv', true)
           }}
           className="flex shrink-0 items-center gap-4 hover:text-inherit"
         >
@@ -156,16 +138,15 @@ const Navbar = () => {
             </li>
           ))}
           <li className="pt-2 lg:hidden">
-            <button
-              type="button"
-              onClick={() => {
-                setMobileOpen(false);
-                setIsRecruiterOpen(true);
-              }}
-              className="w-full text-center py-2.5 rounded-xl bg-gradient-to-r from-[#FF6B00] to-[#CC5200] text-white text-xs font-bold tracking-wider uppercase transition-all shadow-[0_2px_10px_rgba(255,107,0,0.3)] cursor-pointer"
+            <a
+              href="https://docs.google.com/document/d/1sF2VN9DuwBd0vMRuZnrpSl4sCW5GAQy2/edit?usp=sharing&ouid=115579106773621874111&rtpof=true&sd=true"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setMobileOpen(false)}
+              className="block w-full text-center py-2.5 rounded-xl bg-gradient-to-r from-[#FF6B00] to-[#CC5200] text-white text-xs font-bold tracking-wider uppercase transition-all shadow-[0_2px_10px_rgba(255,107,0,0.3)] hover:brightness-110 no-underline"
             >
-              Recruiter Brief & Resume
-            </button>
+              View Resume
+            </a>
           </li>
         </ul>
 

@@ -16,7 +16,6 @@ const HERO_IMAGE =
   "https://res.cloudinary.com/dpnc8ddpf/image/upload/v1794371653/Gemini_Generated_Image_crt47xcrt47xcrt4_za6ask.png";
 
 const Landing = () => {
-  const [isRecruiterOpen, setIsRecruiterOpen] = useState(false);
   const [copiedEmail, setCopiedEmail] = useState(false);
 
   const copyTimerRef = useRef<number | null>(null);
@@ -45,14 +44,8 @@ const Landing = () => {
   const handleScrollToWork = (
     e: React.MouseEvent<HTMLAnchorElement>
   ) => {
-    if (window.innerWidth > 1024) {
-      const smoother = getSmoother();
-
-      if (smoother) {
-        e.preventDefault();
-        smoother.scrollTo("#work", true, "top top");
-      }
-    }
+    e.preventDefault();
+    getSmoother()?.scrollTo("#work", true);
   };
 
   return (
@@ -119,10 +112,13 @@ const Landing = () => {
 
             {/* AVAILABILITY */}
             <div className="hero-animate mb-7">
-              <button
-                type="button"
-                onClick={() => setIsRecruiterOpen(true)}
-                className="inline-flex cursor-pointer items-center gap-2.5 rounded-full border border-emerald-500/30 bg-emerald-500/[0.08] px-4 py-2 text-xs font-semibold tracking-wide text-emerald-400 backdrop-blur-md transition-all duration-300 hover:border-emerald-400/60 hover:bg-emerald-500/[0.15]"
+              <a
+                href="#contact"
+                onClick={(e) => {
+                  e.preventDefault();
+                  getSmoother()?.scrollTo("#contact", true);
+                }}
+                className="inline-flex cursor-pointer items-center gap-2.5 rounded-full border border-emerald-500/30 bg-emerald-500/[0.08] px-4 py-2 text-xs font-semibold tracking-wide text-emerald-400 backdrop-blur-md transition-all duration-300 hover:border-emerald-400/60 hover:bg-emerald-500/[0.15] no-underline"
               >
                 <span className="relative flex h-2 w-2">
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60" />
@@ -130,7 +126,7 @@ const Landing = () => {
                 </span>
                 Available for Opportunities
                 <FiArrowUpRight />
-              </button>
+              </a>
             </div>
 
             {/* NAME */}

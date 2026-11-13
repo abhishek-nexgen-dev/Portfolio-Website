@@ -14,6 +14,7 @@ import Exploring from "./Exploring";
 import BeyondTheCode from "./BeyondTheCode";
 import setSplitText from "./utils/splitText";
 import { setAllTimeline } from "./utils/GsapScroll";
+import { initLocomotiveScroll } from "../context/smoother";
 
 // Code-split: the WebGL glow trail
 // is NOT part of the initial bundle. It loads only when needed
@@ -61,6 +62,13 @@ const MainContainer = () => {
   }, []);
 
   useEffect(() => {
+    const smoother = initLocomotiveScroll();
+    return () => {
+      smoother.destroy();
+    };
+  }, []);
+
+  useEffect(() => {
     const ctx = gsap.context(() => {
       setAllTimeline();
     });
@@ -68,7 +76,7 @@ const MainContainer = () => {
   }, []);
 
   return (
-    <div className="container-main overflow-x-hidden">
+    <div className="container-main overflow-x-clip">
       {/* GlowCursor trail: fixed screen-blended layer at var(--z-glow).
           Full scale: index.css (:root --z-* tokens). */}
       {isFinePointer && glowReady && (

@@ -354,13 +354,8 @@ const About = () => {
               <a
                 href="#work"
                 onClick={(e) => {
-                  if (window.innerWidth > 1024) {
-                    const smoother = getSmoother();
-                    if (smoother) {
-                      e.preventDefault();
-                      smoother.scrollTo("#work", true, "top top");
-                    }
-                  }
+                  e.preventDefault();
+                  getSmoother()?.scrollTo("#work", true);
                 }}
                 className="inline-flex items-center gap-1.5 rounded-xl border border-[#FF6B00]/30 bg-[#FF6B00]/[0.08] px-4 py-2.5 text-xs font-semibold tracking-wide text-[#FFB380] transition-all duration-200 hover:-translate-y-0.5 hover:border-[#FF6B00] hover:bg-[#FF6B00]/20 hover:text-white"
               >
@@ -370,13 +365,8 @@ const About = () => {
               <a
                 href="#career"
                 onClick={(e) => {
-                  if (window.innerWidth > 1024) {
-                    const smoother = getSmoother();
-                    if (smoother) {
-                      e.preventDefault();
-                      smoother.scrollTo("#career", true, "top top");
-                    }
-                  }
+                  e.preventDefault();
+                  getSmoother()?.scrollTo("#career", true);
                 }}
                 className="inline-flex items-center gap-1.5 rounded-xl border border-white/[0.08] bg-[#101014] px-4 py-2.5 text-xs font-semibold tracking-wide text-white/75 transition-all duration-200 hover:-translate-y-0.5 hover:border-orange-500/35 hover:bg-white/[0.06] hover:text-white"
               >

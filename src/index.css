@@ -2,8 +2,7 @@
 /* Font is loaded via <link> in index.html (not @import) so it does not
  * block CSS parsing — see index.html. */
 @import "tailwindcss";
-
-
+@import "locomotive-scroll/dist/locomotive-scroll.css";
 
 :root {
   font-family: "Geist", sans-serif;
@@ -11,7 +10,7 @@
   font-optical-sizing: auto;
   font-style: normal;
   line-height: 1.5;
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
   color-scheme: light dark;
   color: #FFFFFF;
   background-color: var(--backgroundColor);
